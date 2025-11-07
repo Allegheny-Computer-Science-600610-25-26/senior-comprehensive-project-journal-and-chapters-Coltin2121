@@ -1,0 +1,8 @@
+---
+title: "Activity 3: Outline of Chapter Two"
+date: "2025-11-07"
+---
+
+![](thumbnail.jpg)
+
+For chapter two I have a decent idea of what I want to do. Whenever looking at the specifics of my tool there isn't really anything exactly like it however there is a lot of related work. For example hardware-in-the-loop testing is something that is very popular as well as use of the raspberry pi. My project also places them in the sector of education. While these things do not all exist together there is a lot of literature with all of these areas in separate cases. Where this project fits is inside of the education space. As I said prior there is nothing that does exactly this especially in the context of education. In the actual outline I will go into much further detail on this.
