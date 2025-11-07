@@ -1,6 +1,6 @@
 ---
-title: "Activity template post"
-date: "2024-08-29"
+title: "Sample"
+date: "2025-11-07"
 ---
 
 This is the first post in a Quarto blog. Welcome!

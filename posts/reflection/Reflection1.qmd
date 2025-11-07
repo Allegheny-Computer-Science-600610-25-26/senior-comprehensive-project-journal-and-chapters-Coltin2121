@@ -1,0 +1,8 @@
+---
+title: "Reflection 1: Current Computational Artifact"
+date: "2025-08-29"
+---
+
+![Image post thumbnail](thumbnail.jpg)
+
+The current version of my tool is named "GDBuddy". This was the name of the tool when I began working on it and intend on keeping it. The reason for this name is that it acts as an assistant for GDB which is the GNU Debugger. In the current implementation this tool is a GitHub Actions runner for hardware in the loop testing of the Raspberry Pi. To start the runner you must first open the docker container. Then you must enter a GitHub Personal access token. Once you do this you can use the command "Docker compose up" and your container should begin running and be able to run jobs shortly after that! This means that whenever an assignment is pushed the runner will pick up the job and and run the code on a local Raspberry Pi to evaluate it. 
