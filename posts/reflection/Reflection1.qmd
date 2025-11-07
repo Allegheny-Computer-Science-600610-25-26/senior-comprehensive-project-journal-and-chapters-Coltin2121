@@ -1,6 +1,6 @@
 ---
 title: "Reflection 1: Current Computational Artifact"
-date: "2025-08-29"
+date: "2025-11-07"
 ---
 
 ![Image post thumbnail](thumbnail.jpg)
