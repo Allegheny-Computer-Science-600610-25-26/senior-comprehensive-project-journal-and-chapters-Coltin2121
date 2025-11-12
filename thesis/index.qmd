@@ -12,15 +12,15 @@ format:
 natbiboptions: numbers
 # EDIT AT YOUR OWN PERIL #
 
-title: Senior Thesis Title
+title: GDBuddy
 
-firstreader: First Reader
-secondreader: Second Reader
+firstreader: Professor Luman
+secondreader: Professor Olivar Bonham-Carter
 
 bibliography: references.bib
 
 author:
-  - name: A. Student
+  - name: Coltin Colucci
     affiliation:
       name: Allegheny College
       address: 520 N. Main St., Box Q
