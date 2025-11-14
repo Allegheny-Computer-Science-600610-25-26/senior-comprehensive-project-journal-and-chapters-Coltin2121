@@ -1,0 +1,8 @@
+---
+title: "Activity 2: Outline of Chapter One"
+date: "2025-11-07"
+---
+
+![](thumbnail.jpg)
+
+I have a rough outline of my Chapter One introduction. To start the first thing I would like to introduce is the problem that this project is addressing. The problem being hardware in the loop testing for the Raspberry Pi. This is an embedded device that is often used in computer science classes. What this tool will do is run assignments on actual hardware (Raspberry Pi) through the use of Docker container and GitHub actions runner. This allows for a consistent and reproducible environment to test in. Being able to handle more projects and improving the ease of use with the tool is how I plan on improving the tool. I was motivated to do this by actually using this tool in my CMPSC-200 class. Being a user of the tool allowed to me understand what would be some of the preferred features from a client perspective and helping to now develop the tool I'm understanding what some of the host features would be. 

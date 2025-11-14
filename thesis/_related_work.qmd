@@ -1,10 +1,23 @@
 # Related work
 
-This chapter includes a broad and detailed review of relevant existing work.
-The literature review should provide background and context for the thesis work.
-The subsections may be organized in whatever manner seems best suited to the material--
-chronological, or by topic, or according to some other criteria
-(e.g., primary versus secondary resources).
+There are a variety of different sources that are relevant to GDBuddy ranging from peer reviewed academic papers to GitHub repositories that are doing similar things. This section is a deeper dive into the workspace surrounding HIL testing, GitHub Actions Runners, Docker, and the Raspberry Pi as all of these things are relevant to the workspace of GDBuddy. 
 
-If ethical issues are central to this work, you should also address historical and
-contemporary issues or efforts made to address them.
+## HIL fundamentals and Historical Development
+
+Hardware-in-the-loop (HIL) is a methodology where real hardware is integrated into a system to enable testing a verification that the software can run on the real system as opposed to simulating that system. Traditionally, HIL  has been used in industries like aerospace, automotive, power electronics, and robotics, where testing physical systems directly can be dangerous and costly. In these industries a normal practice is to put a certain component under test. This is called the hardware under test (HUT). This hardware is then coupled with a computation model of the rest of the system creating a closed environment where interactions can be controlled and measured in real time. This can be useful especially whenever it comes to testing parts that are responsible for the safety of human lives. 
+
+Many early HIL systems were designed for validating flight control systems, engine management units, and industrial controllers. These systems emphasized deterministic, real-time execution. Through doing this the HUT receives inputs and returns outputs in a controlled environment where systems can be stressed and analyzed. As the technology developed HIL setups have turned to all sorts of different interfaces such as digital sensors, serial and controller area network (CAN) communications, and multi-device interactions. 
+
+Mihalic et al. (2022) provides a wide overview of the historical development of HIL systems and how they technically worked. This article highlights the important technological advancements as well as the ongoing challenges. It identifies several recurring engineering issues such as the balance between model fidelity, computational cost, the complexity of interfacing heterogeneous hardware (systems that use multiple types of processors), and the need for reproducibility in testing. This is a great example of the industrial or commercial use cases of HIL are and some of these concepts translate well to smaller projects that can make this type of service more accessible. 
+
+The development of HIL also reflects a shift from manual benchmark testing to more automated frameworks. Early systems required engineers to manually configure and monitor each test scenario. Modern HIL platforms tend to use more automation for test execution, data collection, and error analysis. These historical trends provide context for GDBuddy, which aims to combine HIL testing with automated CI workflows in an accessible platform.
+
+## Related Articles
+
+Mihalic et al. (2022) is one of the primary references for looking at the history of HIL specifically for industrial and commercial use. They describe the challenges of real time simulation, fidelity trade offs, hardware interfacing, and reproducibility. It also notes that while HIL is widely used in industrial contexts it remains somewhat unexplored in low cost CI environments which is the gap GDBuddy plans to fill. This will also be re-iterated when looking at relevant GitHub repositories. 
+
+## Related GitHub Repositories
+
+There is a clear gap in HIL and that can be seen from searching the tag on GitHub. When filtering for #hardware-in-the-loop there are only 37 public repositories on GitHub. Out of these repositories many of them are simulating HIL. Also out of these 37 repositories there are less than 5 that currently use the Raspberry Pi as their embedded device of choice. While there is a gap in this area specifically there are still some repositories that are related to GDBuddy in a less specific way. 
+
+A great example of this would be the raspberrypi / pico-examples repository. This repository shows how to actually configure your local raspberry pi and gives a list of commands that may be useful in doing so. Also it being made by the developers of Raspberry Pi makes it a reliable source to find information about different commands and what they are used for. 

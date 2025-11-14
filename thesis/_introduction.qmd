@@ -1,36 +1,47 @@
 # Introduction
 
-This chapter describes your completed senior thesis work,
-including the overall aims  and the background motivating your research. Whenever
-possible, you should use one or more concrete examples and technical diagrams.
+My senior comprehensive project, GDBuddy, is a hardware-in-the-loop (HIL) runner designed for the Raspberry Pi. It operates through a Docker container that runs within GitHub Actions, enabling seamless integration with existing continuous integration (CI) workflows. In its current form, GDBuddy is used in the education sector. With an active GDBuddy runner, assignments that are pushed to GitHub can be run on a real Raspberry Pi. While the students software is running GDBuddy evaluates its behavior against predefined requirements and provides real-time feedback directly on GitHub. This workflow creates a consistent and efficient testing-feedback loop for both instructors and students, improving code reliability and learning outcomes.
 
-It is often useful and necessary to separate the introduction into multiple sections.
-Several possible sections are proposed below, you can use these or distribute your
-introductory text into sections in another way.
-
-The headings below propose _one way_ you might structure this section of the document.
 
 ## Motivation
 
+The development of GDBuddy was influenced by the need to better understand and improve the user experience for both students and instructors using the tool. Experiences with GDBuddy revealed that many users benefited from its services but had limited understanding of its inner workings from a development standpoint. This motivated a deeper exploration into how the tool operates and how it could be refined to meet the needs of both students and educators. By examining GDBuddy from both a production and user perspective, this project aims to bridge the gap between usability, functionality, and educational effectiveness.
+
+It is also important to note the benefits of a hardware in the loop system. In high end embedded system development the reliability of the system often depends on rigorous testing methodologies that go beyond your normal simulation based workflows. While software simulators can offer fast and useful testing in early development they inherently can not account for every aspect in the way that testing on real can. A few examples of these would be timing jitter, electrical noise, peripheral latency, memory constraints, and many other systems are often simplified when simulating. This leads to less accurate testing when compared to testing on physical hardware. 
+
+Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two. 
+
+Even the best emulators can not perfectly replicate real hardware. This is why hardware-in-the-loop testing is so important. It is the best method of testing if you are looking for accuracy and precision. HIL allows for test cases to be ran under the exact electrical, timing, and performance conditions encountered by real users of the product. This approach can also help to expose hardware dependent issues such as timing violations, initialization inconsistencies, caching effects, thermal related behavior, along with a variety of other issues that are otherwise undetectable in a virtualized environment. 
+
+For this project HIL is one of the key components because of these reasons. With using HIL testing through a GitHub Actions runner on a real Raspberry Pi it allows for an accurate and reproducible environment to produce test results on. Combining HIL with GitHub actions allows for accessible, automated, and scalable integration in education.
+
+As far as functionality goes, testing embedded code typically requires manual steps such as flashing firmware to a device, observing physical behavior and then collecting results. These manual processes slow down iteration can introduce some human error. This is the reason that GDBuddy was created, a tool that bridges the gap between cloud based CI workflows and physical hardware in the loop automation. By integrating the Raspberry Pi as a runner for GitHub Actions, GDBuddy enables developers to automatically build, deploy, and test their code on the real embedded device. This ultimately brings great reproducibility and ease of use.
+
 ## Current State of the Art
+
+In the current space there are a variety of HIL implementations available on GitHub. An example of this would be zephyr_twister_hil_testing repository, which demonstrates how to integrate real-hardware testing within GitHub Actions. This project provides an example where it compiles Zephyr's basic/blinky firmware in the cloud (using GitHub-hosted runners), then flashes it and runs it on a self hosted runner connected to the physical hardware. This repository also focuses on the Nordic nRF52840 Development Kit paired with an ESP32 modem.
+
+This project is similar to GDBuddy in the sense that it is looking at HIL testing through GitHub actions. However there is a lot to contrast here. To start GDBuddy focuses on an entirely different embedded device, Raspberry Pi. Also the setup process is much more simple as there is only a docker container that can be set up and running in just a couple of steps. The opposing repository requires significant manual setup for both the runner hardware and firmware flashing scripts. In the context of education this could cause accessibility issues for some learners as well as instructors.
+
+In summary while projects such as Golioth's zephyr_twister_hil_testing demonstrate technical feasibility of HIL testing within GitHub Actions, GDBuddy builds upon this concept by emphasizing accessibility, educational integration, and ease of deployment, making it better suited for the classroom environment. 
 
 ## Goals of the Project
 
+The primary goal of GDBuddy is to enhance the accessibility and automation in hardware-in-the-loop testing for the Raspberry Pi platform. GDBuddy aims to achieve the following goals
+
+1. Automated Hardware Testing
+    Enables software to be automatically built, deployed, and tested on a Raspberry Pi through GitHub Actions.
+
+2. Simplified Setup Process
+    Provide an easy a to manage Docker-based environment that can be easily deployed by instructors with minimal specialized configuring.
+
+3. Scalability and Reliability
+    Ensure that GDBuddy can scale to multiple jobs while still maintaining consistent performance and accurate feedback. 
+
 ## Ethical Implications
 
-This document requires that you discuss the ethical implications of your work -- no
-matter how benign you consider the outcome of your project. As several major studies
-of ethical issues in computer science assert: _no project is completely value-neutral_.
+GDBuddy proposes a few different ethical considerations related to security, misuse, and responsible deployment. The most immediate concern is the potential execution of malicious or harmful code on the physical Raspberry Pi used as the runner. GitHub Actions workflows can trigger builds and tests automatically and an unsecure runner could become a target for unauthorized job execution leading to manipulation of the attached hardware. Ensuring that the runner is configured to accept jobs only from authenticated sources is something that would be essential given these safety concerns. 
 
-To assist you in elaborating on these issues, the following areas are topics you might
-consider addressing. You do not need to address all of them.
+Another main ethical concern would be the reliance on a variety of GitHubs systems to work in a secure fashion so the tool can not be manipulated. It is first assumed that GitHub would not give access to the organization where runners can be created. It is also assumed that the runners' GitHub Personal Access Token (PAT) is uncompromised as it is required for authentication to create a runner. All of these factors place an ethical obligation to develop this with the best industry practices in mind in order to prevent such issues. 
 
-* Information Privacy
-* Information Accuracy (e.g. can contain reliability)
-* Potential Misuse (e.g. computer crime, unintended consequences)
-* Second- or Third-Party Risk (e.g. safety)
-* Data Collection Issues (e.g. issues inherent in collecting data)
-* Algorithmic or Data Bias
-* Potential Power Difference / Social Imbalance / Issues in Equity
-
-In addition, reflect on ways that the above harms can be or are mitigated by your work.
+Finally, the integration of HIL testing in an educational environment raises concerns about equity and accessibility. If these systems were difficult to configure securely or required unprovided or expensive hardware there may be an advantage given to certain learners and the exclusion of others. GDBuddy attempts to break down these barriers through a simplified setup and also allowing the code to run on the educators runner as opposed to students having to have their own Raspberry Pi though they might find it useful. This tool provides the ability to run code from any device on an actual Raspberry Pi which can provide accessibility to this embedded system that somebody might not otherwise have. 

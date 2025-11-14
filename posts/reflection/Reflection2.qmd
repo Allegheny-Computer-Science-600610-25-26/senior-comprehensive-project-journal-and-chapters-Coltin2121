@@ -1,0 +1,8 @@
+---
+title: "Reflection 2: Presentation Preparation"
+date: "2025-11-07"
+---
+
+![Image post thumbnail](thumbnail.jpg)
+
+In preparation for my presentation I found myself doing a lot of review on the technicalities of my project. For example I built a token fetcher for my tool towards the start of the semester. When I built it I had a pretty good idea of what it was doing. Now that it has been a while I have found myself reviewing the exact workflow. Another thing I wanted to review was what all the tools were that I was using and what role they play in my project. I also found myself double checking my hardware systems in order to be able to describe the exact setup that I was using. Making the slides was pretty straightforward. With some of the more technical stuff I had a few more words than I would have liked but I wanted to make sure that I was presenting the correct information. Lastly I rehearsed my presentation to make sure that I would meet the proper time and also setup my demo before hand to avoid any technical difficulties. 
