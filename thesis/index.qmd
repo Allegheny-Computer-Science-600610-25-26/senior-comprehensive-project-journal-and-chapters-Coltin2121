@@ -14,7 +14,7 @@ natbiboptions: numbers
 
 title: GDBuddy
 
-firstreader: Professor Luman
+firstreader: Professor Douglas Luman
 secondreader: Professor Olivar Bonham-Carter
 
 bibliography: references.bib
@@ -32,3 +32,13 @@ author:
 abstract: |
   A well-researched student project. Like very.
 ---
+
+{{< include _introduction.qmd >}}
+
+{{< include _related_work.qmd >}}
+
+{{< include _methods.qmd >}}
+
+{{< include _experiments.qmd >}}
+
+{{< include _conclusion.qmd >}}
