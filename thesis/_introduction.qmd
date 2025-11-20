@@ -11,6 +11,10 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two. 
 
+![](HILvsSIL.jpg)
+
+EXPLAIN THIS IMAGE 
+
 Even the best emulators can not perfectly replicate real hardware. This is why hardware-in-the-loop testing is so important. It is the best method of testing if you are looking for accuracy and precision. HIL allows for test cases to be ran under the exact electrical, timing, and performance conditions encountered by real users of the product. This approach can also help to expose hardware dependent issues such as timing violations, initialization inconsistencies, caching effects, thermal related behavior, along with a variety of other issues that are otherwise undetectable in a virtualized environment. 
 
 For this project HIL is one of the key components because of these reasons. With using HIL testing through a GitHub Actions runner on a real Raspberry Pi it allows for an accurate and reproducible environment to produce test results on. Combining HIL with GitHub actions allows for accessible, automated, and scalable integration in education.
