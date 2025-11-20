@@ -38,10 +38,10 @@ In summary while projects such as Golioth's zephyr_twister_hil_testing demonstra
 
 ## Goals of the Project
 
-The primary goal of GDBuddy is to enhance the accessibility and automation in hardware-in-the-loop testing for the Raspberry Pi platform. GDBuddy aims to achieve the following goals
+The primary goal of GDBuddy is to enhance the accessibility and automation in hardware-in-the-loop testing for the Raspberry Pi platform. While HIL testing is widely used in a variety of different sectors such as automotive safety systems and industrial control systems most of the available HIL systems are expensive and require specialized hardware. As a result of this HIL is often inaccessible to students or independent developers. This often leads to more of simulation based testing. GDBuddy addresses this gap by first off being integrated with an already popular embedded device in education. In combination with this it is already integrated with GitHub Actions. By doing this it allows for this platform to be accessible to far more people than it was before.
 
-1. Automated Hardware Testing
-    Enables software to be automatically built, deployed, and tested on a Raspberry Pi through GitHub Actions.
+Goal 1: Automated Hardware Testing
+    The first objective of this project is to enable automated HIL testing directly within GitHub Actions. Instead of relying on simulation GDBuddy aims to run the code directly on the Raspberry Pi. Whenever the code is ran on the Raspberry Pi it then retrieves a functional output evaluate if the code passes the various test cases for the given assignment and returns the results to the student through the GitHub Actions pipeline. This allows students or developers to treat physical hardware as a test runner. This goal is essential because embedded systems often contain hardware dependant logic and also have various restrictions such as available memory that can not be tested through simulation alone. A successful implementation will allow contributors to push code, trigger CI workflows, and receive verification that there code behaves correctly in a real physical environment without ever needing direct access to the hardware.
 
 2. Simplified Setup Process
     Provide an easy a to manage Docker-based environment that can be easily deployed by instructors with minimal specialized configuring.
