@@ -14,6 +14,12 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two.
 
+![](SimVsEmVsHIL.JPEG)
+
+Figure 1A
+
+This venn diagram goes to show the pros and cons of all of these different methods. Each has there own use in the testing process however some are more fit for certain roles than others. For example if testing for a car part that is essential to the braking system one would likely want to simulate and emulate this before trying test it with with HIL as it could be a safety concern. 
+
 ### Importance of Hardware-in-the-Loop Testing
 
 Even the best emulators can not perfectly replicate real hardware. This is why hardware-in-the-loop testing is so important. It is the best method of testing if you are looking for accuracy and precision. HIL allows for test cases to be ran under the exact electrical, timing, and performance conditions encountered by real users of the product. This approach can also help to expose hardware dependent issues such as timing violations, initialization inconsistencies, caching effects, thermal related behavior, along with a variety of other issues that are otherwise undetectable in a virtualized environment. 
@@ -24,7 +30,8 @@ For this project HIL is one of the key components because of these reasons. With
 
 ### Industry Context
 ![](HILvsSIL.jpg)
-Figure 1A 
+
+Figure 1B
 
 As shown in Figure 1 of Balan et al. (2025), this is what a testing process might look like for a company that is selling a product to the open market. In this figure the design specification is on the left and the test execution is shown on the right. SiL stands for Software in the Loop. This involves testing software components in a simulated environment where software is executed on a virtual platform instead of physical hardware. This is often industry standard for the first round of testing as if the software can not run successfully on its own it probably does not work when integrated with a separate piece of hardware. The next level of testing is HIL. This is when the hardware component actually has the software ran on it in real time. Where this setup differs from GDBuddy is when we start talking about ViL (Vehicle in the Loop). This often done in the automotive industry but also translates to any project where multiple different parts are working together. Now that the specific part has been tested via HIL it is important to then test it with ViL to show that it can work with the surrounding systems and not just on its own. Ultimately if all of these tests pass then you can begin vehicle testing as a whole and feel confident that the various parts and systems that have been tested will work. 
 
@@ -36,8 +43,10 @@ GDBuddy addresses this gap in the education sector by providing HIL testing for 
 
 This example supports the motivation behind GDBuddy. While software can be tested in simulation for functional correctness only HiL can ensure that correctness in reality. GDBuddy creates a system that makes this technology easy to access by making HIL testing continuous, reproducible, and automated.
 
+### Workflow
 ![](workflow_graphic.jpg)
-Figure 1B
+
+Figure 1C
 
 The figure shown above represents the workflow of GDBuddy. Something that is very noticeable is that if GitHub is already being used for assignments then students do not have to change anything they are doing at all. They simply clone the repository, complete the assignment, and then push the repository to GitHub. As long as a runner is active it will automatically pick up this assignment as a job. Activating the runner is a somewhat simple process. Simply connect your Raspberry Pi to your host machine, open the GDBuddy folder, enter your GitHub Personal Access Token(PAT), and docker compose up. Once you do this it should only take a few minutes to authenticate and then it becomes an active runner that is waiting for jobs. Now that the runner is activated and a repository has been pushed this will automatically be picked up by the runner where it will then run the code on a physical Raspberry Pi, evaluate it, then return the feedback to the student. This is the base workflow of GDBuddy. 
 
@@ -74,12 +83,15 @@ The Raspberry Pi ecosystem features a large number of remote execution and debug
 The primary goal of GDBuddy is to enhance the accessibility and automation in hardware-in-the-loop testing for the Raspberry Pi platform. While HIL testing is widely used in a variety of different sectors such as automotive safety systems and industrial control systems most of the available HIL systems are expensive and require specialized hardware. As a result of this HIL is often inaccessible to students or independent developers. This often leads to more of simulation based testing. GDBuddy addresses this gap by first off being integrated with an already popular embedded device in education. In combination with this it is already integrated with GitHub Actions. By doing this it allows for this platform to be accessible to far more people than it was before.
 
 ### Goal 1: Automated Hardware Testing
+
     The first objective of this project is to enable automated HIL testing directly within GitHub Actions. Instead of relying on simulation GDBuddy aims to run the code directly on the Raspberry Pi. Whenever the code is ran on the Raspberry Pi it then retrieves a functional output evaluate if the code passes the various test cases for the given assignment and returns the results to the student through the GitHub Actions pipeline. This allows students or developers to treat physical hardware as a test runner. This goal is essential because embedded systems often contain hardware dependant logic and also have various restrictions such as available memory that can not be tested through simulation alone. A successful implementation will allow contributors to push code, trigger CI workflows, and receive verification that there code behaves correctly in a real physical environment without ever needing direct access to the hardware.
 
 ### Goal 2: Simplified Setup Process
+
     A major issue with making HIL accessible is the complexity of establishing a working environment. Many existing HIL platforms have complex toolchians, customized kernels, or specialized lab equipment. These constraints make deployment impractical in academic settings where instructors hae to support dozens of students with varying backgrounds in technology. GDBuddy addresses this obstacle by providing a reproducible Docker based environment. This setup should only require a student to clone a repository and then push there changes. If they are in the proper workspace then the job should automatically be picked up by the runner. The simplicity of this project also extends its long term maintainability. Instead of having to install a traditional toolchain it is containerized through Docker. This reduces the instructors burden and also lowers the experience level needed to use GDBuddy. Along with this it allows for better reproducibility across environments. 
 
 ### Goal 3: Scalability and Reliability
+
     The third goal is to ensure that GDBuddy remains scalable beyond a single device. In the future this tool will hopefully be compatible with various microcontrollers. Another way that scalability would be increased is to be able to handle and have multiple runners available at all times. As of now it is dependant on the time of year or day whether runners are available however if there were more users and more runners it is likely the GDBuddy could scale efficiently as long as there a relatively good ratio between the amount of runners and active jobs. GDBuddy also incorporates automated recovery mechanisms ensuring that the runner remains available without constant supervision which is also great for reliability.
 
 ## Ethical Implications
