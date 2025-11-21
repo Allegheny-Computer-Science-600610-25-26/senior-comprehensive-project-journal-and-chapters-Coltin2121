@@ -36,6 +36,11 @@ GDBuddy addresses this gap in the education sector by providing HIL testing for 
 
 This example supports the motivation behind GDBuddy. While software can be tested in simulation for functional correctness only HiL can ensure that correctness in reality. GDBuddy creates a system that makes this technology easy to access by making HIL testing continuous, reproducible, and automated.
 
+![](workflow_graphic.jpg.jpg)
+Figure 1B
+
+The figure shown above represents the workflow of GDBuddy. Something that is very noticeable is that if GitHub is already being used for assignments then students do not have to change anything they are doing at all. They simply clone the repository, complete the assignment, and then push the repository to GitHub. As long as a runner is active it will automatically pick up this assignment as a job. Activating the runner is a somewhat simple process. Simply connect your Raspberry Pi to your host machine, open the GDBuddy folder, enter your GitHub Personal Access Token(PAT), and docker compose up. Once you do this it should only take a few minutes to authenticate and then it becomes an active runner that is waiting for jobs. Now that the runner is activated and a repository has been pushed this will automatically be picked up by the runner where it will then run the code on a phsycial Raspberry Pi, evaluate it, then return the feedback to the student. This is the base workflow of GDBuddy. 
+
 ### Automating Embedded Testing
 
 As far as functionality goes, testing embedded code typically requires manual steps such as flashing firmware to a device, observing physical behavior and then collecting results. These manual processes slow down iteration can introduce some human error. This is the reason that GDBuddy was created, a tool that bridges the gap between cloud based CI workflows and physical hardware in the loop automation. By integrating the Raspberry Pi as a runner for GitHub Actions, GDBuddy enables developers to automatically build, deploy, and test their code on the real embedded device. This ultimately brings great reproducibility and ease of use.
@@ -79,12 +84,22 @@ The primary goal of GDBuddy is to enhance the accessibility and automation in ha
 
 ## Ethical Implications
 
+### Security Risks for Remote Execution
+
 GDBuddy proposes a few different ethical considerations related to security, misuse, and responsible deployment. The most immediate concern is the potential execution of malicious or harmful code on the physical Raspberry Pi used as the runner. GitHub Actions workflows can trigger builds and tests automatically and an unsecure runner could become a target for unauthorized job execution leading to manipulation of the attached hardware. Ensuring that the runner is configured to accept jobs only from authenticated sources is something that would be essential given these safety concerns. 
+
+### Trust in Third Party Platforms
 
 Another main ethical concern would be the reliance on a variety of GitHubs systems to work in a secure fashion so the tool can not be manipulated. It is first assumed that GitHub would not give access to the organization where runners can be created. It is also assumed that the runners' GitHub Personal Access Token (PAT) is uncompromised as it is required for authentication to create a runner. All of these factors place an ethical obligation to develop this with the best industry practices in mind in order to prevent such issues. 
 
+### Hardware Consequences
+
 In addition to cyber security risks HIL systems introduce ethical considerations related to physical consequences. Unlike traditional CI workflows that operate purely in software a HIL runner controls real hardware that may interact with external power systems or mechanical components. If malicious code is executed the device could physically overdraw power, damage connected devices, and in certain extreme cases pose safety risks to users or property. While GDBuddy is currently used for testing on Raspberry Pi's which are rather light weight, the ethical concern is still relevant because it establishes a precedent for remotely executing instruction on physical hardware. Future extensions of GDBuddy must enforce hardware safety constraints. 
 
+### Data Privacy
+
 Another ethical concern is how the data produced from testing is treated. There can be sensitive information such as network addresses or device identifiers. If these logs are uploaded to GitHub or transmitted over public networks private information could be at risk for exposure. The ethical fix for this is to protect sensitive data during transport and storage and to avoid collecting information that is not necessary for testing in the first place. Conforming to the best security practices would eliminate most of these issues to ultimately ensure that educational users developing insecure code are not exposed to privacy failures. 
+
+### Equity, Access, And Educational Fairness
 
 Finally, the integration of HIL testing in an educational environment raises concerns about equity and accessibility. If these systems were difficult to configure securely or required unprovided or expensive hardware there may be an advantage given to certain learners and the exclusion of others. GDBuddy attempts to break down these barriers through a simplified setup and also allowing the code to run on the educators runner as opposed to students having to have their own Raspberry Pi though they might find it useful. This tool provides the ability to run code from any device on an actual Raspberry Pi which can provide accessibility to this embedded system that somebody might not otherwise have. 
