@@ -14,7 +14,7 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two.
 
-![](SimVsEmVsHIL.JPEG)
+![](SimVsEmVsHIL.JPEG){width=100%}
 
 Figure 1A
 
@@ -64,7 +64,7 @@ In summary while projects such as Golioth's zephyr_twister_hil_testing demonstra
 
 ### Broader Landscape of Hardware-in-the-Loop Tools
 
-Beyond GitHub workflows there are a number of industrial grade HIL frameworks that exist. One of these being LAVA( Linaro Automated Validation Architecture). This is used in large system testing like Linux Kernel Functional Testing or KernelCI. With this tool extra hardware may be required for some system tests and results are tracked over time with exportable data. There are other tools as well that operate in the large scale validations pipelines often running across multiple devices with a complex setup. This complexity and resource requirements make them impractical for academic environments where hardware resources and technical experience can be limited. GDBuddy looks to bridge this gap and make HIL accessible to students. 
+Beyond GitHub workflows there are a number of industrial grade HIL frameworks that exist. One of these being LAVA(Linaro Automated Validation Architecture). This is used in large system testing like Linux Kernel Functional Testing or KernelCI. With this tool extra hardware may be required for some system tests and results are tracked over time with exportable data. There are other tools as well that operate in the large scale validations pipelines often running across multiple devices with a complex setup. This complexity and resource requirements make them impractical for academic environments where hardware resources and technical experience can be limited. GDBuddy looks to bridge this gap and make HIL accessible to students. 
 
 ### Limitations Existing In Educational HIL Platforms
 
