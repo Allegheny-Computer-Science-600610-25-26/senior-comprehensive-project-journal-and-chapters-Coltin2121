@@ -14,7 +14,7 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two.
 
-![](SimVsEmVsHIL.JPEG){width=100%}
+![](SimVsEmVsHIL.jpeg){width=100%}
 
 Figure 1A
 
