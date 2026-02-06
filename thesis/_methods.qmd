@@ -1,19 +1,121 @@
 # Method of approach
 
 ## System Overview
+- Self Hosted Github Actions runner integrated with physical Raspberry Pi pIco hardware
+
+- Enables automated execution of code on real embedded hardware
+
+- System bridges GitHubs CI infrastructure with a hardware execution layer
+
+- communicates via USB/ serial interface
 
 ## Hardware-in-the-Loop Architecture
+- Implements hardware-in-the-loop (HIL) testing model which compiled firmware is automatically deployed to physical hardware for execution and validation
+
+- Separates code compilation from execution while preserving automated feedback
+
+- Ensures deterministic hardware behavior that more accurately reflects real deployment conditions
+
+- supports repeatable experiments by resetting the device between runs
+
+- Enables observation of hardware specific behaviors such as timing and deployment failures
 
 ### Hardware Components
+- Raspberry Pi Pico (RP2040 microcontroller)
+  - Dual core ARM Cortex-M0+ microcontroller used as the execution target
+  - chosen for low cost availability and strong open source tooling support.
+  - commonly used in embedded systems courses and projects 
+
+- Host machine running Docker
+  - Serves as self-hosted GitHub Actions runner
+  - manages container execution, device flashing and result collection
+  - bridges gap between GitHubs CI infrastructure and physical hardware
+
+- USB interface for flashing and serial communication
+
+  - Used for firmware flashing via UF2 or OpenOCD based workflows
+  - provides serial communication for runtime output and status reporting
+
 
 ### Software Components
 
+- GitHub Actions
+  - Orchestrates CI workflow including code checkout, build, deployment to hardware, and result collection
+  - Provides extensible platform for integrating custom actions and scripts
+
+- Self Hosted runner
+    - executions GitHub Actions jobs locally on the host machine
+    - allows direct access to connected hardware devices which is not possible with GitHub hosted runners
+  
+  - Docker
+    - Used to containerize the build and deployment environment
+
+    - consistent toolchains and dependencies across runs
+
+    - provides isolation between student code and the host system
+
+  - flashing and debugging tools
+    - OpenOCD, and PIco SDK tools used for firmware deployment
+
+  - Serial monitoring utilities
+   - capture runtime output from the microcontroller
+   forward execution results back to the CI pipeline
+
+
 ## Continuous Integration Workflow
+
+- Workflow triggered by repository events such as push or pull request
+
+- compiled firmware is deployed to the Raspberry Pi Pico over USB
+
+- The device executes the program on real hardware
+
+- Serial output and execution status are captured an logged
+
+- results are reported back to GitHub actions for pass/fail evaluation
+
+- workflow supports automated grading and validation without manual intervention
 
 ## Containerization and Isolation Strategy
 
+- Each job runs inside a DOcker container wit predefine toolchain 
+
+- containers prevent student code form directly accessing the host operating system
+
+- hardware access is restricted to explicitly mounted USB devices
+
+- Containers are destroyed after each run prevent state persistent 
+
+- Isolation reduces risk fo cross submission interference
+
+- Ensures readability of builds and executions across runs
+
+
 ## Security and Access Control
+
+- Only trusted repositories are allowed to trigger hardware execution workflows
+
+- To be able to access the self hosted runner you must have a repository inside of the organization
+
+- Docker containers limit filesystem and process access 
+
+- USB device access is scoped to required Hardware only
+
+- No persistent data is stored inside containers
+
+- system design minimized the attack surface exposed by executing untrusted code
 
 ## Ethical Considerations and Mitigations
 
+- Prevent unfair academic advantage by ensuring all student execute code on identical hardware 
+- Transparency in grading logic ensures fairness and reproducibility 
+
+- System designed for educational use, not surveillance or student monitoring
+
 ## Limitations of the Method
+
+- limited scalability due to reliance on physical hardware availability
+
+- Hardware failures can interrupt CI Workflows
+
+- system currently only supports the Raspberry PI Pico on Linux and Windows Hosts
