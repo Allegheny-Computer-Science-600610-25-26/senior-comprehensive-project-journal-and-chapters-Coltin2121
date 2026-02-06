@@ -32,6 +32,9 @@ An entrypoint script orchestrates the execution flow within the container by coo
 
 ## Continuous Integration Workflow
 
+The continuous integration workflow serves as the orchestration layer that coordinates compilation, deployment, execution and evaluation across the system. The workflow execution is triggered automatically whenever code is pushed to the repository. 
+
+
 - Workflow triggered by repository events such as push or pull request
 
 - compiled firmware is deployed to the Raspberry Pi Pico over USB
