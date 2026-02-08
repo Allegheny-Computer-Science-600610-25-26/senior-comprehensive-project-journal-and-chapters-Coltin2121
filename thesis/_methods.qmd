@@ -34,6 +34,8 @@ An entrypoint script orchestrates the execution flow within the container by coo
 
 The continuous integration workflow serves as the orchestration layer that coordinates compilation, deployment, execution and evaluation across the system. The workflow execution is triggered automatically whenever code is pushed to the repository. 
 
+By embedding hardware execution within a CI framework, the system leverages existing version control and automation infrastructure to support scalable and repeatable evaluation. This approach allows for embedded code to be assessed using the same submission and feedback mechanisms that are commonly used in software development, while extending them to physical hardware execution. This workflow is likely to be familiar to students and faculty alike which allows for GDBuddy to be easily adopted.
+
 
 - Workflow triggered by repository events such as push or pull request
 
@@ -48,6 +50,10 @@ The continuous integration workflow serves as the orchestration layer that coord
 - workflow supports automated grading and validation without manual intervention
 
 ## Containerization and Isolation Strategy
+
+Containerization is used to enforce isolation boundaries between submitted code, the host system, and the shared hardware environment. Containers define the scope of execution by constraining filesystem access. By doing this it means that if a user is trying to access the hosts system they will only be able to access the container filesystem, not the hosts real filesystem. By the process visibility being limited it means that host processes and other CI jobs are out of the scope if there were to be a malicious attempt.This approach reduces the risk of unintended interactions between submissions and limits the impact of misbehaving code.
+
+Along with these security benefits, containerization also provides a huge help in ensuring consistent runtime dependencies. By containerizing the toolchain and execution environment there can be no variability in what tools are being used. This creates a fair standard to evaluate all submissions as it is guaranteed that all of the submissions are being built and executed in teh same environment. If it was not for containerization there would inevitably be some scenarios where it would work on one machine but not another due to differences in toolchain versions or host configurations.
 
 - Each job runs inside a DOcker container wit predefine toolchain 
 
