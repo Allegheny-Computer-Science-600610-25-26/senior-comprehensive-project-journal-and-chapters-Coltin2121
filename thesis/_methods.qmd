@@ -51,7 +51,7 @@ By embedding hardware execution within a CI framework, the system leverages exis
 
 ## Containerization and Isolation Strategy
 
-Containerization is used to enforce isolation boundaries between submitted code, the host system, and the shared hardware environment. Containers define the scope of execution by constraining filesystem access. By doing this it means that if a user is trying to access the hosts system they will only be able to access the container filesystem, not the hosts real filesystem. By the process visibility being limited it means that host processes and other CI jobs are out of the scope if there were to be a malicious attempt.This approach reduces the risk of unintended interactions between submissions and limits the impact of misbehaving code. It is worth mentioning that contaizers do share the host kernel therefore kernel level exploits could impact the host however this threat is mitigated by the fact that the system runs in a controlled academic environment meaning that repositroy access is restricted by the organizaiton. 
+Containerization is used to enforce isolation boundaries between submitted code, the host system, and the shared hardware environment. Containers define the scope of execution by constraining filesystem access. By doing this it means that if a user is trying to access the hosts system they will only be able to access the container filesystem, not the hosts real filesystem. By the process visibility being limited it means that host processes and other CI jobs are out of the scope if there were to be a malicious attempt.This approach reduces the risk of unintended interactions between submissions and limits the impact of misbehaving code. It is worth mentioning that containers do share the host kernel therefore kernel level exploits could impact the host however this threat is mitigated by the fact that the system runs in a controlled academic environment meaning that repository access is restricted by the organization. 
 
 Each job executes in a fresh container instance meaning that after completion of one job the container is destroyed, the filesystem state is discarded, and memory allocations are released. This grantees that there is no cross submission contamination and there are reproducible build conditions within this workflow.
 
@@ -72,6 +72,17 @@ Along with these security benefits, containerization also provides a huge help i
 
 ## Security and Access Control
 
+Whenever looking at the primary security concerns of GDBuddy there are a couple that stand out as being a possible problem. These include 
+
+- Unauthorized access to the host machine
+- Interference with concurrent CI jobs
+- Unauthorized access to hardware peripherals 
+- Resource exhaustion attacks (infinite loops, excessive memory usage etc.)
+
+The first layer of defense against all of these attacks is the repository access control. Hardware execution workflows are restricted to the repositories within a controlled organization. Only trusted repositories are permitted to trigger workflows that access the self hosted runner. In order to access the runner you must have membership within the organization, the appropriate repository permissions, and workflow configuration approval. This ensures that external repositories cannot run jobs on the self hosted runner. 
+
+The self hosted runner operates within a controlled environment and is not publicly exposed. Because the runner has direct USB access to hardware the attack surface is significantly reduced as it is not connected to the runner over any network rather it is connected through direct USB access. 
+
 - Only trusted repositories are allowed to trigger hardware execution workflows
 
 - To be able to access the self hosted runner you must have a repository inside of the organization
@@ -85,6 +96,16 @@ Along with these security benefits, containerization also provides a huge help i
 - system design minimized the attack surface exposed by executing untrusted code
 
 ## Ethical Considerations and Mitigations
+
+The GDBuddy system is designed for use in an educational setting where fairness, transparency, and student privacy are critical concerns. The system automates grading and executes student submitted code on shared hardware, ethical consideration were incorporated into the architectural design. 
+
+A key ethical objective of the system is to prevent unequal academic advantage arising from disparities in hardware availability. In traditional embedded systems courses, students with personal access to hardware may gain additional debugging time and real device exposure compared to student who rely solely on lab access. GDBuddy mitigates this imbalance by providing standardized access to identical hardware, executing all submissions on the same device configuration, and eliminating variability due to personal development environments. This ensures every students code is compiled and executed under identical hardware and software conditions, the system promotes equitable evaluation. 
+
+Automated grading systems can raise concerns regarding opaque evaluation criteria. To address this, GDBuddy emphasizes transparency through clearly defined pass/fail conditions, logged serial output visible to students, and deterministic execution environments. Because the containerized toolchain and device configuration are fixed and version controlled the results are reproducible. If a submission passes or fails, the same outcome can be recreated under identical conditions. 
+
+The system is intentionally limited in scope to program execution and output capture. It does not monitor student development environments, collect personal data beyond repository activity, or record behavioral usage analytics. The self-hosted runner processes only the code committed to the repository and the resulting execution output. No additional metadata or monitoring mechanisms are incorporated into the system design. By restricting data collection to the minimum required for automated evaluation the system adheres to the principles of data minimization nad purpose limitation.
+
+While automation increases scalability and consistency it reduces opportunities for manual instructor review during routine testing. To mitigate this, the system is intended to supplement not replace instructor oversight. Automated results can be audited and instructors retain final grading authority. 
 
 - Prevent unfair academic advantage by ensuring all student execute code on identical hardware 
 - Transparency in grading logic ensures fairness and reproducibility 
