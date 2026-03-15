@@ -1,13 +1,28 @@
 # Experiments
 
-This chapter describes your experimental set up and evaluation. It should also
-produce and describe the results of your study. The section titles below offer
-a typical structure used for this chapter.
+## Overview
+
+When evaluating an experimental system, it is important to first consider the primary goal of the tool being studied. The goal of GDBuddy is to provide educators and students with a platform for evaluating embedded programs on real hardware while receiving timely feedback with minimal setup. Traditional continuous integration (CI) systems are widely used in software development to automatically build and test code. These systems are typically designed for standard software environments and do dno support testing programs that must run on embedded hardware. As a result, instructors and students working with embedded systems often rely on manual testing, which slows developments and makes it difficult to provide timely feedback on assignments especially outside of the classroom.
+
+GDBuddy addresses this limitation by integrating physical hardware devices into an automated CI workflow. By connecting supported developments boards to a HiL based runner allows code pushed to a repository to be automatically compiled, flashed to hardware, and executed as a part of a CI pipeline. This approach allows embedded assignments to be tested on real devices in a manner similar to ow traditional software projects are validated through automated testing frameworks.
+
+In order to evaluate the effectiveness of GDBuddy, two different types of experiments were conducted. The first experiment focused on automated test case validation. This experiment examined whether programs that pass a set of predefined test cases in a local development environment also pass when executed through the GDBuddy runner. The second experiment focused on hardware LED pattern verification using the Raspberry Pi Pico WH and the Arduino Uno. This experiment evaluated whether the system can reliably deploy programs that interact with physical hardware and produce observable behavior on the connected devices. 
+
+Together these experiment evaluate both the functional correctness of code executed through the runner and the systems ability to interact with hardware components in an automated workflow. By examining both software level validation and hardware level behavior, the experiments provide a comprehensive evaluation of GDBuddy's usefulness as a hardware-in-the-loop testing platform for embedded systems development. 
 
 ## Experimental Design
 
+DELETE 
 Especially as it pertains to responisble computing, if conducting experiments or
 evaluations that involve particular ethical considerations, detail those issues here.
+
+### Research Questions
+
+RQ1: Can GDBuddy reliably execute embedded programs through GitHub Actions?
+
+RQ2: Do programs executed through the runner produce identical results to local execution?
+
+RQ3: Can the systems reliably interact with physical hardware components and produce observable behavior?
 
 ## Evaluation
 

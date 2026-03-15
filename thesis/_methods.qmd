@@ -94,7 +94,7 @@ The current implementation supports only the Raspberry Pi Pico platform and is d
 
 - Build processes assume Pico SDK compatibility
 
-Extending support to additional microcontrollers would require 
+Extending support to additional microcontroller would require 
 
 - Alternate SDK configuration
 
