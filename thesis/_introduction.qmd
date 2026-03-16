@@ -76,7 +76,7 @@ A major distinction between GDBuddy and other projects is its emphasis on reprod
 
 ### Raspberry Pi Ecosystem
 
-The Raspberry Pi ecosystem features a large number of remote execution and debugging tools such as PiGPIOD,remote GDB stubs, and remote SSH automation scripts. While useful they were not originally designed as CI integrated HIL workflows. GDBuddy builds on these tools by packaging debugging, deployment, workflow organization, and runner lifecycle management into a single tool. This makes it one of the first projects to treat the Raspberry Pi as a first class target meaning that instead of SSH into it and manually running code jobs are automatically queued and executed on the Pi.
+The Raspberry Pi ecosystem features a large number of remote execution and debugging tools such as PiGPIOD, remote GDB stubs, and remote SSH automation scripts. While useful they were not originally designed as CI integrated HIL workflows. GDBuddy builds on these tools by packaging debugging, deployment, workflow organization, and runner lifecycle management into a single tool. This makes it one of the first projects to treat the Raspberry Pi as a first class target meaning that instead of SSH into it and manually running code jobs are automatically queued and executed on the Pi.
 
 ## Goals of the Project
 
@@ -88,7 +88,7 @@ The first objective of this project is to enable automated HIL testing directly 
 
 ### Goal 2: Simplified Setup Process
 
-A major issue with making HIL accessible is the complexity of establishing a working environment. Many existing HIL platforms have complex toolchians, customized kernels, or specialized lab equipment. These constraints make deployment impractical in academic settings where instructors hae to support dozens of students with varying backgrounds in technology. GDBuddy addresses this obstacle by providing a reproducible Docker based environment. This setup should only require a student to clone a repository and then push there changes. If they are in the proper workspace then the job should automatically be picked up by the runner. The simplicity of this project also extends its long term maintainability. Instead of having to install a traditional toolchain it is containerized through Docker. This reduces the instructors burden and also lowers the experience level needed to use GDBuddy. Along with this it allows for better reproducibility across environments. 
+A major issue with making HIL accessible is the complexity of establishing a working environment. Many existing HIL platforms have complex toolchains, customized kernels, or specialized lab equipment. These constraints make deployment impractical in academic settings where instructors hae to support dozens of students with varying backgrounds in technology. GDBuddy addresses this obstacle by providing a reproducible Docker based environment. This setup should only require a student to clone a repository and then push there changes. If they are in the proper workspace then the job should automatically be picked up by the runner. The simplicity of this project also extends its long term maintainability. Instead of having to install a traditional toolchain it is containerized through Docker. This reduces the instructors burden and also lowers the experience level needed to use GDBuddy. Along with this it allows for better reproducibility across environments. 
 
 ### Goal 3: Scalability and Reliability
 

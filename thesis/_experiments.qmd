@@ -24,6 +24,10 @@ RQ2: Do programs executed through the runner produce identical results to local 
 
 RQ3: Can the systems reliably interact with physical hardware components and produce observable behavior?
 
+### Experimental Workflow
+
+![](Workflow.png)
+
 ## Evaluation
 
 ## Threats to Validity
