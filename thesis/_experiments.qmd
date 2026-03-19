@@ -68,6 +68,14 @@ To evaluate the effectiveness of GDBuddy, several variables and metrics were con
 
 Based on the metrics stated above, the evaluation of GDBuddy will focus on deterministic repeatability across both hardware platforms. 
 
+### Platform Configuration
+
+The experiments were conducted using two different hardware platforms, the Arduino Uno and the Raspberry Pi Pico WH. These platforms were selected due to their widespread use in educational settings.
+
+The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providing a relatively straightforward development workflow. In contrast, the Raspberry Pi Pico WH uses the Pico SDK and requires a separated build process and flashing mechanism. These differences allow the experiments to evaluate GDBuddy across multiple embedded development environments. 
+
+Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent hardware-in-the-loop environment. 
+
 ## Evaluation
 
 ## Threats to Validity
