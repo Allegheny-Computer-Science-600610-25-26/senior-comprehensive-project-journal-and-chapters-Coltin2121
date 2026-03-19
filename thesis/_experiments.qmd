@@ -28,6 +28,46 @@ RQ3: Can the systems reliably interact with physical hardware components and pro
 
 ![](Workflow.png)
 
+This figure illustrates te overall workflow of the GDBuddy system. The process begins when a developer or student pushes code to a GitHub repository connected to an active runner device. This triggers a GitHub Actions workflow. This workflow is configured to t utilize the GDBuddy runner, which is hosted on a Raspberry Pi Pico WH or an Arduino Uno. The runner is responsible for orchestrating the compilation, deployment, and execution of the submitted program on the target hardware. 
+
+Once the workflow is triggered the runner retrieves teh repository contents and initiates the appropriate build process depending on the target platform. For Arduino based programs, this involves invoking the Arduino CLI to compile and upload the code, while Raspberry Pi PIco programs are compiles using the Pico SDK and flashed onto the device. After the program is successfully deployed it is executed directly on the hardware. During execution, output is captured through a serial connection and returned to the CI  environment, where ti can be analyzed against expected results or displayed to the user as feedback.
+
+This workflow demonstrates how GDBuddy extends traditional CI pipelines to support hardware-in-the-loop testing. By automating the process of compiling and executing code on physical devices, the system removes the need for manual testing and enables rapid feedback for embedded systems development. THis is particularly beneficial in educational settings, where consistent and timely evaluation of student code is essential.
+
+Understanding the workflow of GDBuddy is crucial for understanding how to evaluate its performance and effectiveness. Given that the workflow is designed to be seamless and automated, while still providing a consistent environment and feedback loop for users this means that if a specific environment is set for an assignment and the students code passes all checks or produces the expected result locally, then it should also pass when executed through the GDBuddy runner. This is a key aspect of the systems design, as it ensures that automated testing through the CI pipeline is reliable and consistent with local development practices. This is one of the key ways in which GDBuddy will be evaluated in the experiments, by comparing the result of local execution with the results obtained through the runner to determine if they are consistent and reliable. 
+
+## Experimental Methodology
+
+The experiments were designed to evaluate GDBuddy in a controlled and repeatable manner by comparing program behavior across two execution environments: local development and hardware-in=the-loop CI execution. Each experiment follows a consistent methodology in which a program is first developed and tested locally, and then executed through the GDBuddy runner using a GitHub Actions workflow. 
+
+For each test case, the expected output or behavior of the program is defined in advance. The program is then executed locally to establish a baseline for correctness. After verifying local correctness, the same code is committed to a repository, triggering the CI pipeline. The GDBuddy runner compiles, deploys, and executes the program on the target hardware, and the resulting output is collected and compared gainst the expected results. 
+
+To ensure reliability, each experiment is executed multiple times across both supported platforms (Raspberry Pi Pico WH and Arduino Uno). While they will not be given the same exact test cases, the experiments are designed to evaluate similar functionality and behavior across both platforms to provide a comprehensive assessment of GDBuddy's capabilities. 
+
+### Variables and Metrics
+
+To evaluate the effectiveness of GDBuddy, several variables and metrics were considered.
+
+1. **Independent Variable** 
+
+- Execution Environment (Local vs CI runner)
+
+- Target Platform (Raspberry Pi Pico WH vs Arduino Uno)
+
+2. **Dependent Variable**
+
+- Test case pass rate
+
+- Output correctness
+
+- Successful deployment rate
+
+- Hardware execution success rate
+
+![](Evaluation.png)
+
+Based on the metrics stated above, the evaluation of GDBuddy will focus on deterministic repeatability across both hardware platforms. 
+
 ## Evaluation
 
 ## Threats to Validity
