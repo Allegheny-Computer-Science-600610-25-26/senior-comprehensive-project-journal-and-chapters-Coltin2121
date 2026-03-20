@@ -124,6 +124,7 @@ The object of this experiment is to evaluate GDBuddy's ability to reliably execu
 
 This experiment primarily addresses Research Question 3 by evaluating the systems ability to control hardware peripherals and produce consistent, repeatable e physical output. 
 
+
 ### Experimental Setup
 
 
