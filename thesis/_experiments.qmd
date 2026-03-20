@@ -76,6 +76,55 @@ The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providin
 
 Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent hardware-in-the-loop environment. 
 
+### Experimental Assumptions
+
+The experimental design assumes that the local development environment produces correct and deterministic results. This means that local execution is used aas a baseline for comparison against the CI-based execution. It is also assumed that the hardware devices behave consistently across repeated runs under the same conditions. 
+
 ## Evaluation
+
+## Experiment 1: Test Case Validation
+
+The objective of this experiment is to evaluate whether GDBuddy can reliably execute embedded programs through a continuous integration pipeline while producing results consistent with local execution. Specifically, this experiment aims to determine whether programs that pass a predefined set of test cases in a local development environment also pas when executed on physical hardware through the GDBuddy runner. 
+
+This experiment directly addresses Research questions 1 and 2 by focusing on execution reliability and output consistency between local and CI-based environments. 
+
+### Experimental Setup
+
+To conduct this experiment, a set of embedded programs were developed for both Arduino Uno and the Raspberry Pi Pico WH. Each of the programs were designed to produce a deterministic output that could be evaluated against predefined test cases. The test cases were structured in a way that the expected output was known in advance and could compare directly to the output produced during execution. 
+
+The local development environment consisted of standard toolchains for each platform, including the Arduino CLI for Arduino programs and the Pico SDK for the Raspberry Pi PIco programs. Programs were first compiled and executed locally to verify correctness prior to being tested within the CI pipeline. 
+
+For CI-based execution, the same programs were committed to a GitHub repository and then configured and evaluated using the GDBuddy self hosted runner. The runner is hosted on a Linux-based system, and was connected to the given hardware devices via USB. 
+
+### Procedure
+
+The experiment followed a conssitenn procedure for both platforms.
+
+1. A program was implemented and tested locally to ensure it passed all predefined test cases.
+
+2. The expected output for each test case was recorded. 
+
+3. The program was committed and pushed to the repository, triggering the GitHub Actions workflow.
+
+4. The GDBuddy runner retrieved the code, compiled it and deployed it to the target hardware. 
+
+5. The program was executed on the hardware and the output was captured via serial connection.
+
+6. The captured output was compared against the expected results to determine correctness.
+
+This process was repeated 10 times for each program to evaluate consistency and reliability across multiple runs. There were 2 different programs tested on each platform, which means that a total of 40 runs were conducted across both platforms (20 runs per platform).
+
+INSERT TABLE WITH RESULTS HERE
+
+## Experiment 2: Hardware LED Pattern Verification
+
+**Objective**
+
+The object of this experiment is to evaluate GDBuddy's ability to reliably execute programs that interact with physical hardware components. Unlike the previous experiment, which focuses on validating program output, this experiment emphasizes observable hardware behavior. Specifically, it aims to determine whether GDBuddy can consistently deploy and execute programs that produce a predefined LED blinking patter n on embedded devices. 
+
+This experiment primarily addresses Research Question 3 by evaluating the systems ability to control hardware peripherals and produce consistent, repeatable e physical output. 
+
+### Experimental Setup
+
 
 ## Threats to Validity
