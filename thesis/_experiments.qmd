@@ -98,7 +98,7 @@ For CI-based execution, the same programs were committed to a GitHub repository 
 
 ### Procedure
 
-The experiment followed a conssitenn procedure for both platforms.
+The experiment followed a consistent procedure for both platforms.
 
 1. A program was implemented and tested locally to ensure it passed all predefined test cases.
 
@@ -114,6 +114,7 @@ The experiment followed a conssitenn procedure for both platforms.
 
 This process was repeated 10 times for each program to evaluate consistency and reliability across multiple runs. There were 2 different programs tested on each platform, which means that a total of 40 runs were conducted across both platforms (20 runs per platform).
 
+### Results
 INSERT TABLE WITH RESULTS HERE
 
 ## Experiment 2: Hardware LED Pattern Verification
@@ -124,8 +125,61 @@ The object of this experiment is to evaluate GDBuddy's ability to reliably execu
 
 This experiment primarily addresses Research Question 3 by evaluating the systems ability to control hardware peripherals and produce consistent, repeatable e physical output. 
 
-
 ### Experimental Setup
+
+To conduct this experiment LED-based programs were developed for both he Arduino Uno and the Raspberry Pi PIco WH. Each programs was designed to produce a specific and deterministic blinking pattern using an onboard or externally connected LED. 
+
+The LED patterns were structured as a sequence of ON and oFF states with fixed timing intervals. these patterns were intentionally designed to be simple but recognizable, allowing for clear visual verification of correctness during execution. 
+
+As in the previous experiment programs were first developed and tested locally to confirm that the expected ELD pattern was produced. Once verified, the programs were committed to a GitHub repository configured with a CI workflow utilizing the GDBuddy runner. 
+
+The runner, hosted on  a Linux system, was connected to both devices via USB. Upon execution the programs was deployed to the hardware, and the resulting LED behavior was observed and recorded. 
+
+### Procedure
+
+The experiment followed these steps for both platforms:
+
+1. A specific wiring configuration was established to connect the LED's to the appropriate GPIO pins on each device. 
+
+2. An LED control program was developed to produce a predefined blinking patter.
+
+3. The program was tested locally to verify the correct LED pattern was produced.
+
+4. The code was committed and pushed to the repository triggering the GitHub Actions workflow. 
+
+5. The GDBuddy runner compiled and deployed the program to the target device. 
+
+6. The LED behavior was  observed and recorded during execution on the hardware. 
+
+7. The observed LED pattern was compared against the expected pattern to determine correctness.
+
+This process was repeated 10 times for each program to evaluate consistency and reliability across multiple runs.
+
+### Metrics
+
+The following metrics were used to evaluate this experiment:
+
+**Pattern Accuracy**: Whether the observed LED pattern matched what was expected in the sequence. 
+
+**Execution Success Rate**: The percentage of runs in which the program was successfully deployed and executed on the hardware without errors.
+
+**Deployment Success Rate**: The percentage of runs in which the program was successfully compiled and flashed to the device.
+
+**Hardware Reliability**: The ability of the device to execute the program without failure due to hardware issues such as connectivity problems or power fluctuations.
+
+These metrics focus both on correctness and repeatability of hardware based behavior within the GDBuddy CI workflow. 
+
+### Results
+
+INSERT TABLE WITH RESULTS HERE
+
+### Discussion 
+
+This experiment demonstrates GDBuddy's capability to support hardware-in-the-loop testing beyond simple output validation, By successfully executing programs that produce observable physical behavior, the system proves its ability to interact directly with embedded hardware components in an automated CI environment.
+
+The consistency of LED patterns across multiple runs indicate tat GDBuddy can reliably deploy and execute hardware dependant programs. THis is particularly significant because hardware interaction introduces additional complexity compared to standard software execution, including timing dependencies and device communication. 
+
+In an educational context, this capability enables instructors to design assignments that require not only correct program output but also correct hardware behavior. As a result, GDBuddy expands the scope of what can be automatically tested within embedded systems courses. 
 
 
 ## Threats to Validity
