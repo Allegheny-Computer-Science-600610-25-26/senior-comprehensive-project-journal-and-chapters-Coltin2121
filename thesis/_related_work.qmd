@@ -62,6 +62,20 @@ Figure 2A
 
 This figure shows how an (a) embedded system connects to a HIL simulator and (b) the components of a HIL simulator. This model differs from GDBuddy because the Raspberry Pi is a single board setup that does not have system setup around it outside of its hosts PC. This is a rather simplified graphic compared to looking at all of the real components that could be encapsulated by "Input hardware", "Input software", "Output software", and "Output hardware". In the example of GDBuddy the input hardware would be the physical electrical interface of the Raspberry Pi. The input software would be the container that is used for testing but more importantly would be the users repository that was pushed to the runner. The output software is the collected logs, test results, and program output that is returned to the user after it is ran through GitHub Actions on a physical Raspberry Pi. The output hardware may not always apply in the case of GDBuddy however if there was an assignment where one would have to make an LED light up that would be an example of hardware output in context of GDBuddy.
 
+### Current State of the Art
+
+Existing approaches to embedded systems testing and validation vary widely in complexity, cost, and accessibility. Traditional solutions such as. manual lab testing, dedicated hardware testing frameworks, and large scale automated validation systems each provide different trade offs. GDBuddy was designed to address gaps in accessibility, cost efficiency, and integration with modern development workflows. 
+
+A key distinction between GDBuddy and existing solutions is its ability to integrate directly with GitHub Actions, enabling hardware-in-the-loop testing as part of a continuous integration pipeline. Many existing systems, such as Zephyr’s Twister framework, support automated testing but require significant setup time and familiarity with complex build systems. In contrast, GDBuddy reduces setup overhead by leveraging containerization and standardized workflows.
+
+Cost is another major differentiator. industry grade systems such as LAVA are designed for large scale infrastructure and require substantial hardware investment and maintenance. While these systems provide powerful testing capabilities, they are impractical for classroom environments or individual student use. GDBuddy, by comparison, can be deployed using a Raspberry Pi and microcontroller for under $150, making it significantly more accessible.
+
+From an educational perspective, ease of use is critical. Traditional lab setups often require manual code deployment, physical interaction with hardware, and instructor supervision. While this provides valuable hands-on experience, it limits scalability and introduces inconsistency in testing. GDBuddy automates this process while still allowing students to interact with real hardware, preserving the benefits of physical systems while improving reproducibility.
+
+Another important factor is learning curve. Many existing frameworks assume prior experience with embedded systems, virtual environments, and build pipelines. GDBuddy lowers this barrier by using familiar tools such as GitHub and Docker, allowing students to focus on system behavior rather than setup complexity.
+
+Overall, GDBuddy represents a middle ground between fully manual testing and enterprise scale automation systems. It provides a low cost, reproducible, and scalable solution that aligns well with modern software development practices while remaining accessible to students and educators as well as collaborative embedded developers.
+
 ### Increasing Automation and Accessability 
 
 The development of HIL also reflects a shift from manual benchmark testing to automated frameworks. Early systems required engineers to manually configure and monitor each test scenario. Modern HIL platforms tend to use more automation for test execution, data collection, and error analysis. These historical trends provide context for GDBuddy, which aims to combine HIL testing with automated CI workflows in an accessible platform.

@@ -18,7 +18,7 @@ Emulation provides a more accurate approximation by modeling the hardware on a l
 
 Figure 1A
 
-This venn diagram goes to show the pros and cons of all of these different methods. Each has there own use in the testing process however some are more fit for certain roles than others. For example if testing for a car part that is essential to the braking system one would likely want to simulate and emulate this before trying test it with with HIL as it could be a safety concern. 
+This venn diagram goes to show the pros and cons of all of these different methods. Each has their own use in the testing process however some are more fit for certain roles than others. For example if testing for a car part that is essential to the braking system one would likely want to simulate and emulate this before trying test it with with HIL as it could be a safety concern. 
 
 ### Importance of Hardware-in-the-Loop Testing
 
