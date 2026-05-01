@@ -12,7 +12,7 @@ format:
 natbiboptions: numbers
 # EDIT AT YOUR OWN PERIL #
 
-title: GDBuddy: Hardware-in-the-Loop GitHub Actions Runner for Embedded Devices
+title: GDBuddy; Hardware-in-the-Loop GitHub Actions Runner for Embedded Devices
 
 firstreader: Professor Douglas Luman
 secondreader: Professor Olivar Bonham-Carter
