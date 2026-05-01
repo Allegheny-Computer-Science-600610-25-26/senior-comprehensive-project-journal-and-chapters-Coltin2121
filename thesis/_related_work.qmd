@@ -28,7 +28,7 @@ The automotive industry started in a similar fashion to the flight industry.[@20
 
 ![](HiL-experiment-setup.jpg)
 
-Figure 3 [@2018hilreview]
+Figure 2A [@2018hilreview]
 
 The figure above is from an article published in 2018 looking into air brake systems in heavy commercial road vehicles (HCRVs). In this figure you can see the amount of largely specified equipment required to set something like this up. For this specific example the real brake system is being used. The simulation software IPG/TruckMaker® were responsible for creating this environment. IPG Xpack4 is the hardware that serves as a Real-Time Rapid Control Prototyping tool. This real time controller was equipped with a multitude of sensors in order to collect data related to the effectiveness of the braking system. This setup shows what a pretty modern HiL system looks like and how it is used in order to create a very realistic environment to test specific parts in. 
 
@@ -58,7 +58,7 @@ Many early HiL systems were designed for validating flight control systems, engi
 
 ![](HIL_Diagram.jpg)
 
-Figure 2A
+Figure 2B
 
 This figure shows how an (a) embedded system connects to a HiL simulator and (b) the components of a HiL simulator. This model differs from GDBuddy because the Raspberry Pi is a single board setup that does not have a system setup around it outside of its host PC. This is a rather simplified graphic compared to looking at all of the real components that could be encapsulated by "Input hardware", "Input software", "Output software", and "Output hardware". In the example of GDBuddy the input hardware would be the physical electrical interface of the Raspberry Pi. The input software would be the container that is used for testing but more importantly would be the users repository that was pushed to the runner. The output software is the collected logs, test results, and program output that is returned to the user after it is run through GitHub Actions on a physical Raspberry Pi. The output hardware may not always apply in the case of GDBuddy however if there was an assignment where one would have to make an LED light up that would be an example of hardware output in context of GDBuddy.
 

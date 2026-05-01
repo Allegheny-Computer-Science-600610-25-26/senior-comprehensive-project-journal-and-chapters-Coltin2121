@@ -12,7 +12,7 @@ format:
 natbiboptions: numbers
 # EDIT AT YOUR OWN PERIL #
 
-title: GDBuddy
+title: GDBuddy: Hardware-in-the-Loop GitHub Actions Runner for Embedded Devices
 
 firstreader: Professor Douglas Luman
 secondreader: Professor Olivar Bonham-Carter
@@ -30,7 +30,7 @@ author:
       postal-code: 16335
 
 abstract: |
-  A well-researched student project. Like very.
+  Hardware-in-the-loop (HiL) testing provides a one to one representation of real-world embedded system behavior, something simulation alone cannot provide, but it is rarely integrated into continuous integration (CI) workflows due to hardware accessibility and automation challenges. This work introduces GDBuddy, a Hardware-in-the-Loop CI framework that enables automated execution of embedded code on physical microcontroller hardware through a self-hosted GitHub Actions runner. GDBuddy bridges cloud-based CI infrastructure with a physical execution layer by deploying compiled firmware to a Raspberry Pi Pico WH or Arduino Uno over a USB interface and capturing runtime output for evaluation. The system leverages containerization to provide consistent runtime environments, isolate untrusted code, and ensure reproducibility across executions. By incorporating real hardware into the CI pipeline, GDBuddy exposes hardware-specific behaviors, including timing variability and device-level constraints, that are not observable in simulation environments. Experimental use in an educational setting demonstrates the system’s ability to support automated grading and validation of embedded systems assignments while maintaining fairness and consistency. This work highlights the practical benefits of integrating hardware-in-the-loop testing into CI workflows and identifies key challenges related to scalability, hardware management, and system reliability.
 ---
 
 {{< include _introduction.qmd >}}

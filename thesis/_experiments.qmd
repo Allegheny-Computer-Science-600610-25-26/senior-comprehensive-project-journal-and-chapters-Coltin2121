@@ -12,15 +12,17 @@ Ultimately this experiment evaluates both the functional correctness of code exe
 
 ### Research Questions
 
-RQ1: Can GDBuddy reliably execute embedded programs through GitHub Actions?
+- **Research Question 1: Can GDBuddy reliably execute embedded programs through GitHub Actions?**
 
-RQ2: Can GDBuddy produce consistent and repeatable execution results across hardware runs?
+- **Research Question 2: Can GDBuddy produce consistent and repeatable execution results across hardware runs?**
 
-RQ3: Can the systems reliably interact with physical hardware components and produce observable behavior?
+- **Research Question 3: Can the systems reliably interact with physical hardware components and produce observable behavior?**
 
 ### Experimental Workflow
 
 ![](Workflow.png)
+
+Figure 4A - GDBuddy Workflow Diagram
 
 This figure illustrates the overall workflow of the GDBuddy system. The process begins when a developer or student pushes code to a GitHub repository connected to an active runner device. This triggers a GitHub Actions workflow. This workflow is configured to t utilize the GDBuddy runner, which is hosted on a Raspberry Pi Pico WH or an Arduino Uno. The runner is responsible for orchestrating the compilation, deployment, and execution of the submitted program on the target hardware. 
 
@@ -54,19 +56,13 @@ These independent variables were chosen to evaluate GDBuddy across different exe
 
 - Deployment Success Rate: The percentage of runs in which the program was successfully compiled and flashed to the device.
 
-This metric is critical because it evaluates the reliability of the CI pipeline's integration with physical hardware. In a Hardware-in-the-Loop system, successful deployment is a prerequisite for any further evaluation. Failures at this stage would indicate issues in toolchain configuration, device communication, or pipeline orchestration. Therefore, this metric directly measures the robustness of the system's ability to bridge software workflows with embedded hardware. 
-
 - Execution Success Rate: The percentage of runs in which the program executed successfully on the hardware without runtime failures. 
-
-This metric captures whether the system is capable of not only deploying code, but also executing it correctly on the target device. It is particularly important in embedded systems, where successful flashing does not guarantee correct runtime behavior. By separating execution success from deployment success, this metric ensures that failures in runtime behavior are independently identified. 
 
 - Pattern Accuracy: Whether the observed LED pattern matched the expected sequence.
 
-This metric serves as the primary measure of functional correctness in the experiment. Since the LED pattern is deterministic and easily observable, it provides a clear and direct mapping between program logic and physical output. Pattern accuracy is therefore an effective proxy for verifying that the program executed as intended on the hardware. 
-
 - Run-to-Run Consistency: The degree to which repeated executions of the same program produce the same results across multiple runs.
 
-This metric is essential for assessing the reliability of GDBuddy as a CI system. Continuous integration environments require deterministic behavior, where identical inputs produce identical outputs across repeated executions. Any variation between runs could indicate instability in the hardware, communication pipeline, or execution environment. Therefore, this metric directly measures the system’s ability to provide consistent and reproducible results.
+Deployment Success Rate is critical because it evaluates the reliability of the CI pipeline's integration with physical hardware. In a Hardware-in-the-Loop system, successful deployment is a prerequisite for any further evaluation. Failures at this stage would indicate issues in toolchain configuration, device communication, or pipeline orchestration. Therefore, this metric directly measures the robustness of the system's ability to bridge software workflows with embedded hardware. Along with this Execution Success Rate is also an important metric to take into account. Execution Success Rate captures whether the system is capable of not only deploying code, but also executing it correctly on the target device. It is particularly important in embedded systems, where successful flashing does not guarantee correct runtime behavior. By separating execution success from deployment success, this metric ensures that failures in runtime behavior are independently identified. These two metrics are vital for evaluating the robustness of the CI pipeline however pattern accuracy is essential for evaluating the functional correctness of the executed program. This metric serves as the primary measure of functional correctness in the experiment. Since the LED pattern is deterministic and easily observable, it provides a clear and direct mapping between program logic and physical output. Pattern accuracy is therefore an effective proxy for verifying that the program executed as intended on the hardware. Lastly it is vital that the system is consistent across runs. Run-to-Run Consistency is essential for assessing the reliability of GDBuddy as a CI system. Continuous integration environments require deterministic behavior, where identical inputs produce identical outputs across repeated executions. Any variation between runs could indicate instability in the hardware, communication pipeline, or execution environment. Therefore, this metric directly measures the system’s ability to provide consistent and reproducible results.
 
 
 Together, these metrics provide a comprehensive evaluation of GDBuddy by addressing three key aspects of system performance:
@@ -83,11 +79,11 @@ By combining these dimensions, the evaluation ensures that both the software and
 
 ### Platform Configuration
 
-The experiments were conducted using two different hardware platforms, the Arduino Uno and the Raspberry Pi Pico WH. These platforms were selected due to their widespread use in educational settings.
+The experiments were conducted using two different hardware platforms, the Arduino Uno and the Raspberry Pi Pico WH. These platforms were selected due to their widespread use in the embedded systems world having a large supporting base and infrastructure.
 
 The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providing a relatively straightforward development workflow. In contrast, the Raspberry Pi Pico WH uses the Pico SDK and requires a separate build process and flashing mechanism. These differences allow the experiments to evaluate GDBuddy across multiple embedded development environments. 
 
-Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent Hardware-in-the-Loop environment.
+Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. This configuration ensures that all experiments are performed within a consistent Hardware-in-the-Loop environment.
 
 ### Test Case Design
 
@@ -99,7 +95,11 @@ The simplicity of the LED based test cases was intentional to ensure that the ex
 
 ### Experimental Assumptions
 
-The experimental design assumes that the local development environment produces correct and deterministic results. This means that local execution is used as a baseline for comparison against the CI-based execution. It is also assumed that the hardware devices behave consistently across repeated runs under the same conditions. 
+The experimental design assumes that the local development environment produces correct and deterministic results. This means that local execution is used as a baseline for comparison against the CI-based execution. It is also assumed that the hardware devices behave consistently across repeated runs under the same conditions.
+
+In addition, the experiments assume that the physical hardware is connected to the correct USB ports and GPIO pins, and that the host machine has stable access to those ports for both power and data. For the Arduino Uno, the USB connection must provide both reliable power and serial communication, and the onboard pin 13 LED must function properly. For the Raspberry Pi Pico WH, the micro USB connection must support firmware flashing and serial output, and GPIO pin 25 must be electrically functional and able to drive the onboard LED.
+
+The design further assumes that the electrical characteristics of the hardware are sound: signal levels are within expected voltage ranges, the device ground is shared correctly with the host, and there are no intermittent loose connections or power issues that could affect runtime behavior. These hardware-level assumptions are necessary to isolate GDBuddy's software and CI workflow performance from unrelated electrical or connection problems.
 
 ### Experimental Setup
 
@@ -110,8 +110,6 @@ The local development environment consisted of standard toolchains for each plat
 For CI-based execution, the same programs were committed to a GitHub repository and then configured and evaluated using the GDBuddy self hosted runner. The runner is hosted on a Linux-based system, and is connected to the given hardware devices via USB. 
 
 ## Experiment: Hardware LED Pattern Verification
-
-**Objective**
 
 The object of this experiment is to evaluate GDBuddy's ability to reliably execute programs that interact with physical hardware components. Unlike the previous experiment, which focuses on validating program output, this experiment emphasizes observable hardware behavior. Specifically, it aims to determine whether GDBuddy can consistently deploy and execute programs that produce a predefined LED blinking pattern on embedded devices. 
 
@@ -182,19 +180,12 @@ Across all experimental runs, both platforms achieved a 100% deployment success 
 
 ### Pattern Accuracy
 
-Pattern accuracy evaluates whether the observed LED behavior matched the expected blinking pattern defined in the program.
-
-Across all runs, both platforms demonstrated 100% pattern accuracy, with each execution producing the correct LED sequence. No deviations from the expected behavior were observed during testing. 
-
+Pattern accuracy evaluates whether the observed LED behavior matched the expected blinking pattern defined in the program.Across all runs, both platforms demonstrated 100% pattern accuracy, with each execution producing the correct LED sequence. No deviations from the expected behavior were observed during testing. 
 This confirms that the system not only executes programs successfully but also preserves functional correctness during hardware execution. 
 
 ### Run-to-Run Consistency
 
-This metric assesses whether repeated executions of the same program produce identical observable behavior across multiple runs. 
-
-Across all 40 runs, both platforms exhibited fully consistent behavior, with no variation in LED timing patterns or sequence order between executions. Each run produced the identical results under the same input conditions.
-
-This demonstrates that GDBuddy is capable of deterministic and repeatable hardware execution, which is a critical requirement for reliable CI-based testing. 
+This metric assesses whether repeated executions of the same program produce identical observable behavior across multiple runs. Across all 40 runs, both platforms exhibited fully consistent behavior, with no variation in LED timing patterns or sequence order between executions. Each run produced the identical results under the same input conditions. This demonstrates that GDBuddy is capable of deterministic and repeatable hardware execution, which is a critical requirement for reliable CI-based testing. 
 
 ### Discussion 
 
@@ -203,7 +194,6 @@ This experiment demonstrates GDBuddy's capability to support Hardware-in-the-Loo
 The consistency of LED patterns across multiple runs indicate that GDBuddy can reliably deploy and execute hardware dependent programs. THis is particularly significant because hardware interaction introduces additional complexity compared to standard software execution, including timing dependencies and device communication. 
 
 In an educational context, this capability enables instructors to design assignments that require not only correct program output but also correct hardware behavior. As a result, GDBuddy expands the scope of what can be automatically tested within embedded systems courses. 
-
 
 ## Threats to Validity
 
@@ -229,10 +219,7 @@ Additionally, all experiments were conducted in a controlled environment with co
 ### Construct Validity
 
 Construct validity concerns whether the experiment accurately measures the intended system properties. 
-
-In this study, LED blinking patterns were used as a proxy for program correctness. While this approach is effective for validating deterministic execution and hardware interaction, it does not capture the full complexity of embedded systems behavior. For example, the experiment does not evaluate sensor input handling, or possible test case evaluation. 
-
-As a result, while pattern accuracy confirms correct execution for simple deterministic programs, it may not fully represent the correctness for more complex embedded system applications, especially those that involve non-deterministic behavior or dynamic input.
+In this study, LED blinking patterns were used as a proxy for program correctness. While this approach is effective for validating deterministic execution and hardware interaction, it does not capture the full complexity of embedded systems behavior. For example, the experiment does not evaluate sensor input handling, or possible test case evaluation. As a result, while pattern accuracy confirms correct execution for simple deterministic programs, it may not fully represent the correctness for more complex embedded system applications, especially those that involve non-deterministic behavior or dynamic input.
 
 ### Scalability Limitations
 

@@ -50,6 +50,8 @@ Along with these security benefits, containerization also provides a huge help i
 
 ![](System_Design3.drawio.jpeg)
 
+Figure 3A - System Architecture Diagram
+
 The GDBuddy system is built around a hybrid architecture that integrates cloud based automation with locally connected embedded hardware. As shown in the figure above, the system consists of three primary layers: GitHub, a host Linux machine running a self-hosted runner, and the embedded hardware device. This design allows the system to bridge modern continuous integration workflows with real physical hardware, enabling automated Hardware-in-the-Loop testing.
 
 At the top level, GitHub serves as the source control platform and entry point for the workflow. When code is pushed to a repository, a GitHub Actions workflow is triggered automatically. These workflows are defined using YAML configuration files, which specify the sequence of steps required to build, test, and execute code. The use of YAML is important because it allows the workflow to be version controlled alongside the codebase, making the testing process transparent and reproducible. This ensures that every test run follows the exact same procedure, reducing inconsistencies and improving reliability.
@@ -104,11 +106,11 @@ The system is intentionally limited in scope to program execution and output cap
 
 While automation increases scalability and consistency it reduces opportunities for manual instructor review during routine testing. To mitigate this, the system is intended to supplement, not replace instructor oversight. Automated results can be audited and instructors retain final grading authority. 
 
-- Prevent unfair academic advantage by ensuring all students execute code on identical hardware 
+- Prevent unfair academic advantage by ensuring all students execute code on identical hardware if used in an educational setting
 
-- Transparency in grading logic ensures fairness and reproducibility 
+- Transparency in logic ensures fairness and reproducibility 
 
-- System designed for educational use, not surveillance or student monitoring
+- System designed for collaborative use, not surveillance or monitoring
 
 ## Limitations of the Method
 
