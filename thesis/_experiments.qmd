@@ -32,7 +32,7 @@ Understanding the workflow of GDBuddy is crucial for understanding how to evalua
 
 ## Experimental Methodology
 
-The experiments were designed to evaluate GDBuddy in a controlled and repeatable manner by comparing program behavior across two execution environments: local development and hardware-in=the-loop CI execution. Each experiment follows a consistent methodology in which a program is first developed and tested locally, and then executed through the GDBuddy runner using a GitHub Actions workflow. 
+The experiments were designed to evaluate GDBuddy in a controlled and repeatable manner by comparing program behavior across two execution environments: local development and hardware-in-the-loop CI execution. Each experiment follows a consistent methodology in which a program is first developed and tested locally, and then executed through the GDBuddy runner using a GitHub Actions workflow. 
 
 For each test case, the expected output or behavior of the program is defined in advance. The program is then executed locally to establish a baseline for correctness. After verifying local correctness, the same code is committed to a repository, triggering the CI pipeline. The GDBuddy runner compiles, deploys, and executes the program on the target hardware, and the resulting output is collected and compared against the expected results. 
 
@@ -87,7 +87,15 @@ The experiments were conducted using two different hardware platforms, the Ardui
 
 The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providing a relatively straightforward development workflow. In contrast, the Raspberry Pi Pico WH uses the Pico SDK and requires a separated build process and flashing mechanism. These differences allow the experiments to evaluate GDBuddy across multiple embedded development environments. 
 
-Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent hardware-in-the-loop environment. 
+Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent hardware-in-the-loop environment.
+
+### Test Case Design
+
+The physical setup for both experimental platforms required careful attention to ensure consistent and reproducible results across all test runs. For the Arduino Uno, the onboard LED connected to digital pin 13 was utilized for pattern verification. This LED is directly integrated into the board's design and requires no external wiring, simplifying the setup and eliminating potential connection issues. The Arduino was powered through its USB connection to the host machine, which simultaneously provided power delivery and serial communication capabilities.
+
+The Raspberry Pi Pico WH configuration was more involved due to the absence of a builtin user controllable LED in the same manner as the Arduino. For these experiments, GPIO pin 25 was used, which on the Pico WH variant connects to an onboard LED. This pin was configured as a digital output in the test program, with the LED state controlled through direct GPIO manipulation using the Pico SDK's hardware abstraction layer. Like the Arduino, the Pico was powered and programmed through its micro USB connection, which serves the dual purpose of providing 5V power from the host and enabling firmware upload through the USB.
+
+The simplicity of the LED based test cases was intentional to ensure that the expected output was deterministic and easily observable. By using onboard LEDs, the experiments avoided potential issues with external wiring or component variability, which could introduce additional sources of error. This design choice allowed for a clear focus on evaluating GDBuddy's ability to reliably execute code that interacts with hardware components, while minimizing confounding factors related to physical setup.
 
 ### Experimental Assumptions
 
