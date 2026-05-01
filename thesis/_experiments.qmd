@@ -2,13 +2,13 @@
 
 ## Overview
 
-When evaluating an experimental system, it is important to first consider the primary goal of the tool being studied. The goal of GDBuddy is to provide educators and students with a platform for evaluating embedded programs on real hardware while receiving timely feedback with minimal setup. Traditional continuous integration (CI) systems are widely used in software development to automatically build and test code. These systems are typically designed for standard software environments and do do not support testing programs that must run on embedded hardware. As a result, instructors and students working with embedded systems often rely on manual testing, which slows development and makes it difficult to provide timely feedback on assignments especially outside of the classroom.
+When evaluating an experimental system, it is important to first consider the primary goal of the tool being studied. The goal of GDBuddy is to provide educators and students with a platform for evaluating embedded programs on real hardware while receiving timely feedback with minimal setup. Traditional continuous integration (CI) systems are widely used in software development to automatically build and test code. These systems are typically designed for standard software environments and do not support testing programs that must run on embedded hardware. As a result, instructors and students working with embedded systems often rely on manual testing, which slows development and makes it difficult to provide timely feedback on assignments especially outside of the classroom.
 
-GDBuddy addresses this limitation by integrating physical hardware devices into an automated CI workflow. By connecting supported development boards to a HiL based system allows code pushed to a repository to be automatically compiled, flashed to hardware, and executed as a part of a CI pipeline. This approach allows embedded assignments to be tested on real devices in a manner similar to ow traditional software projects are validated through automated testing frameworks.
+GDBuddy addresses this limitation by integrating physical hardware devices into an automated CI workflow. By connecting supported development boards to a HiL based system allows code pushed to a repository to be automatically compiled, flashed to hardware, and executed as a part of a CI pipeline. This approach allows embedded assignments to be tested on real devices in a manner similar to how traditional software projects are validated through automated testing frameworks.
 
-In order to evaluate the effectiveness of GDBuddy, on primary hardware-in-the-loop experiment was conducted.The experiment focused on hardware LED pattern verification using the Raspberry Pi Pico WH and the Arduino Uno. This experiment evaluated whether the system can reliably deploy programs that interact with physical hardware and produce observable behavior on the connected devices. 
+In order to evaluate the effectiveness of GDBuddy, a primary hardware-in-the-loop experiment was conducted.The experiment focused on hardware LED pattern verification using the Raspberry Pi Pico WH and the Arduino Uno. This experiment evaluated whether the system can reliably deploy programs that interact with physical hardware and produce observable behavior on the connected devices. 
 
-Ultimately this experiment evaluates both the functional correctness of code executed through the runner and the systems ability to interact with hardware components in an automated workflow. By examining hardware level execution behavior, the experiments provide a comprehensive evaluation of GDBuddy's usefulness as a hardware-in-the-loop testing platform for embedded systems development. 
+Ultimately this experiment evaluates both the functional correctness of code executed through the runner and the system's ability to interact with hardware components in an automated workflow. By examining hardware level execution behavior, the experiments provide a comprehensive evaluation of GDBuddy's usefulness as a hardware-in-the-loop testing platform for embedded systems development. 
 
 ### Research Questions
 
@@ -22,9 +22,9 @@ RQ3: Can the systems reliably interact with physical hardware components and pro
 
 ![](Workflow.png)
 
-This figure illustrates te overall workflow of the GDBuddy system. The process begins when a developer or student pushes code to a GitHub repository connected to an active runner device. This triggers a GitHub Actions workflow. This workflow is configured to t utilize the GDBuddy runner, which is hosted on a Raspberry Pi Pico WH or an Arduino Uno. The runner is responsible for orchestrating the compilation, deployment, and execution of the submitted program on the target hardware. 
+This figure illustrates the overall workflow of the GDBuddy system. The process begins when a developer or student pushes code to a GitHub repository connected to an active runner device. This triggers a GitHub Actions workflow. This workflow is configured to t utilize the GDBuddy runner, which is hosted on a Raspberry Pi Pico WH or an Arduino Uno. The runner is responsible for orchestrating the compilation, deployment, and execution of the submitted program on the target hardware. 
 
-Once the workflow is triggered the runner retrieves teh repository contents and initiates the appropriate build process depending on the target platform. For Arduino based programs, this involves invoking the Arduino CLI to compile and upload the code, while Raspberry Pi PIco programs are compiles using the Pico SDK and flashed onto the device. After the program is successfully deployed it is executed directly on the hardware. During execution, output is captured through a serial connection and returned to the CI  environment, where ti can be analyzed against expected results or displayed to the user as feedback.
+Once the workflow is triggered the runner retrieves the repository contents and initiates the appropriate build process depending on the target platform. For Arduino based programs, this involves invoking the Arduino CLI to compile and upload the code, while Raspberry Pi PIco programs are compiled using the Pico SDK and flashed onto the device. After the program is successfully deployed it is executed directly on the hardware. During execution, output is captured through a serial connection and returned to the CI  environment, where it can be analyzed against expected results or displayed to the user as feedback.
 
 This workflow demonstrates how GDBuddy extends traditional CI pipelines to support hardware-in-the-loop testing. By automating the process of compiling and executing code on physical devices, the system removes the need for manual testing and enables rapid feedback for embedded systems development. THis is particularly beneficial in educational settings, where consistent and timely evaluation of student code is essential.
 
@@ -48,13 +48,13 @@ To evaluate the effectiveness of GDBuddy, several variables and metrics were con
 
 - Target Platform (Raspberry Pi Pico WH vs Arduino Uno)
 
-These independent variables were chosen to evaluate GDBuddy across different execution environments and hardware configurations. the Inclusion of multiple platforms allows teh system ot be assessed for generality, while the comparison between local validation and CI-based execution provides a baseline for expected behavior. 
+These independent variables were chosen to evaluate GDBuddy across different execution environments and hardware configurations. The inclusion of multiple platforms allows the system to be assessed for generality, while the comparison between local validation and CI-based execution provides a baseline for expected behavior. 
 
 2. **Dependent Variable**
 
 - Deployment Success Rate: The percentage of runs in which the program was successfully compiled and flashed to the device.
 
-This metric is critical because it evaluates the reliability of the CI pipeline's integration with physical hardware. In a hardware-in-the-loop system, successful deployment is a prerequisite for any further evaluation. Failures at this stage would indicate issues in toolchain configuration, device communication, or pipeline orchestration. Therefore, this metric directly measures the robustness of the systems ability to bridge software workflows with embedded hardware. 
+This metric is critical because it evaluates the reliability of the CI pipeline's integration with physical hardware. In a hardware-in-the-loop system, successful deployment is a prerequisite for any further evaluation. Failures at this stage would indicate issues in toolchain configuration, device communication, or pipeline orchestration. Therefore, this metric directly measures the robustness of the system's ability to bridge software workflows with embedded hardware. 
 
 - Execution Success Rate: The percentage of runs in which the program executed successfully on the hardware without runtime failures. 
 
@@ -85,7 +85,7 @@ By combining these dimensions, the evaluation ensures that both the software and
 
 The experiments were conducted using two different hardware platforms, the Arduino Uno and the Raspberry Pi Pico WH. These platforms were selected due to their widespread use in educational settings.
 
-The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providing a relatively straightforward development workflow. In contrast, the Raspberry Pi Pico WH uses the Pico SDK and requires a separated build process and flashing mechanism. These differences allow the experiments to evaluate GDBuddy across multiple embedded development environments. 
+The Arduino Uno utilizes the Arduino CLI for compilation and uploading, providing a relatively straightforward development workflow. In contrast, the Raspberry Pi Pico WH uses the Pico SDK and requires a separate build process and flashing mechanism. These differences allow the experiments to evaluate GDBuddy across multiple embedded development environments. 
 
 Both devices were connected to a linux machine via USB connection. Serial communication was used to capture the program output during execution. THis configuration ensures that all experiments are performed within a consistent hardware-in-the-loop environment.
 
@@ -99,7 +99,7 @@ The simplicity of the LED based test cases was intentional to ensure that the ex
 
 ### Experimental Assumptions
 
-The experimental design assumes that the local development environment produces correct and deterministic results. This means that local execution is used aas a baseline for comparison against the CI-based execution. It is also assumed that the hardware devices behave consistently across repeated runs under the same conditions. 
+The experimental design assumes that the local development environment produces correct and deterministic results. This means that local execution is used as a baseline for comparison against the CI-based execution. It is also assumed that the hardware devices behave consistently across repeated runs under the same conditions. 
 
 ### Experimental Setup
 
@@ -107,25 +107,25 @@ To conduct this experiment, a set of embedded programs were developed for both A
 
 The local development environment consisted of standard toolchains for each platform, including the Arduino CLI for Arduino programs and the Pico SDK for the Raspberry Pi PIco programs. Programs were first compiled and executed locally to verify correctness prior to being tested within the CI pipeline. 
 
-For CI-based execution, the same programs were committed to a GitHub repository and then configured and evaluated using the GDBuddy self hosted runner. The runner is hosted on a Linux-based system, and was connected to the given hardware devices via USB. 
+For CI-based execution, the same programs were committed to a GitHub repository and then configured and evaluated using the GDBuddy self hosted runner. The runner is hosted on a Linux-based system, and is connected to the given hardware devices via USB. 
 
 ## Experiment: Hardware LED Pattern Verification
 
 **Objective**
 
-The object of this experiment is to evaluate GDBuddy's ability to reliably execute programs that interact with physical hardware components. Unlike the previous experiment, which focuses on validating program output, this experiment emphasizes observable hardware behavior. Specifically, it aims to determine whether GDBuddy can consistently deploy and execute programs that produce a predefined LED blinking patter n on embedded devices. 
+The object of this experiment is to evaluate GDBuddy's ability to reliably execute programs that interact with physical hardware components. Unlike the previous experiment, which focuses on validating program output, this experiment emphasizes observable hardware behavior. Specifically, it aims to determine whether GDBuddy can consistently deploy and execute programs that produce a predefined LED blinking pattern on embedded devices. 
 
 This experiment primarily addresses Research Question 3 by evaluating the systems ability to control hardware peripherals and produce consistent, repeatable e physical output. 
 
 ### Experimental Setup
 
-To conduct this experiment LED-based programs were developed for both he Arduino Uno and the Raspberry Pi PIco WH. Each programs was designed to produce a specific and deterministic blinking pattern using an onboard or externally connected LED. 
+To conduct this experiment LED-based programs were developed for both the Arduino Uno and the Raspberry Pi PIco WH. Each program was designed to produce a specific and deterministic blinking pattern using an onboard or externally connected LED. 
 
-The LED patterns were structured as a sequence of ON and oFF states with fixed timing intervals. these patterns were intentionally designed to be simple but recognizable, allowing for clear visual verification of correctness during execution. 
+The LED patterns were structured as a sequence of ON and oFF states with fixed timing intervals. These patterns were intentionally designed to be simple but recognizable, allowing for clear visual verification of correctness during execution. 
 
 As in the previous experiment programs were first developed and tested locally to confirm that the expected ELD pattern was produced. Once verified, the programs were committed to a GitHub repository configured with a CI workflow utilizing the GDBuddy runner. 
 
-The runner, hosted on  a Linux system, was connected to both devices via USB. Upon execution the programs was deployed to the hardware, and the resulting LED behavior was observed and recorded. 
+The runner, hosted on  a Linux system, was connected to both devices via USB. Upon execution the program was deployed to the hardware, and the resulting LED behavior was observed and recorded. 
 
 ### Procedure
 
@@ -133,7 +133,7 @@ The experiment followed these steps for both platforms:
 
 1. A specific wiring configuration was established to connect the LED's to the appropriate GPIO pins on each device. 
 
-2. An LED control program was developed to produce a predefined blinking patter.
+2. An LED control program was developed to produce a predefined blinking pattern.
 
 3. The program was tested locally to verify the correct LED pattern was produced.
 
@@ -156,7 +156,7 @@ Across all runs, the GDBuddy CI pipeline successfully executed the full workflow
 
 ### Execution Success Rate
 
-Both the Arduino Uno and the Raspberry Pi Pco WH achieved a 100% Execution success rate, meaning that in all test runs the system was able to:
+Both the Arduino Uno and the Raspberry Pi Pico WH achieved a 100% Execution success rate, meaning that in all test runs the system was able to:
 
 - Successfully trigger the GitHub Actions Workflow
 
@@ -170,7 +170,7 @@ This result indicates that the CI to hardware pipeline was stable under repeated
 
 ### Deployment Success Rate
 
-Deployment success rate measures teh percentage of runs in which the program was successfully compiled and flashed onto the garget device. 
+Deployment success rate measures the percentage of runs in which the program was successfully compiled and flashed onto the target device. 
 
 Across all experimental runs, both platforms achieved a 100% deployment success rate. In every case, the GDBuddy runner successfully:
 
@@ -186,7 +186,7 @@ Pattern accuracy evaluates whether the observed LED behavior matched the expecte
 
 Across all runs, both platforms demonstrated 100% pattern accuracy, with each execution producing the correct LED sequence. No deviations from the expected behavior were observed during testing. 
 
-This confirms that the system not only executed programs successfully but also preserves functional correctness during hardware execution. 
+This confirms that the system not only executes programs successfully but also preserves functional correctness during hardware execution. 
 
 ### Run-to-Run Consistency
 
@@ -198,9 +198,9 @@ This demonstrates that GDBuddy is capable of deterministic and repeatable hardwa
 
 ### Discussion 
 
-This experiment demonstrates GDBuddy's capability to support hardware-in-the-loop testing beyond simple output validation, By successfully executing programs that produce observable physical behavior, the system proves its ability to interact directly with embedded hardware components in an automated CI environment.
+This experiment demonstrates GDBuddy's capability to support hardware-in-the-loop testing beyond simple output validation. By successfully executing programs that produce observable physical behavior, the system proves its ability to interact directly with embedded hardware components in an automated CI environment.
 
-The consistency of LED patterns across multiple runs indicate tat GDBuddy can reliably deploy and execute hardware dependant programs. THis is particularly significant because hardware interaction introduces additional complexity compared to standard software execution, including timing dependencies and device communication. 
+The consistency of LED patterns across multiple runs indicate that GDBuddy can reliably deploy and execute hardware dependent programs. THis is particularly significant because hardware interaction introduces additional complexity compared to standard software execution, including timing dependencies and device communication. 
 
 In an educational context, this capability enables instructors to design assignments that require not only correct program output but also correct hardware behavior. As a result, GDBuddy expands the scope of what can be automatically tested within embedded systems courses. 
 
@@ -222,7 +222,7 @@ Additionally, hardware timing behavior may vary slightly due to microcontroller 
 
 This refers to the degree in which these results can be generalized beyond the experimental setup.
 
-This experiment was conducted using the two specific hardware platforms that GDBuddy is compatible with. While these platforms are widely used in a variety of settings, the results would not generalize to other embedded devices or microcontroller. 
+This experiment was conducted using the two specific hardware platforms that GDBuddy is compatible with. While these platforms are widely used in a variety of settings, the results would not generalize to other embedded devices or microcontrollers. 
 
 Additionally, all experiments were conducted in a controlled environment with consistent hardware and stable connections. In other settings there may be additional variability in hardware such as wiring configuration, device quality, user behavior, or USB communication stability that could impact results. 
 
@@ -230,13 +230,13 @@ Additionally, all experiments were conducted in a controlled environment with co
 
 Construct validity concerns whether the experiment accurately measures the intended system properties. 
 
-In this study, LED blinking patterns were use as a proxy for program correctness. While this approach is effective for validating deterministic execution and hardware interaction, it does not capture the full complexity of embedded systems behavior. For example, the experiment does not evaluate sensor input handling, or possible test case evaluation. 
+In this study, LED blinking patterns were used as a proxy for program correctness. While this approach is effective for validating deterministic execution and hardware interaction, it does not capture the full complexity of embedded systems behavior. For example, the experiment does not evaluate sensor input handling, or possible test case evaluation. 
 
 As a result, while pattern accuracy confirms correct execution for simple deterministic programs, it may not fully represent the correctness for more complex embedded system applications, especially those that involve non-deterministic behavior or dynamic input.
 
 ### Scalability Limitations
 
-The current evaluation focuses on sing device execution within the CI pipeline. The system was not tested with multiple runner devices executing concurrently, which would require additional work to manage device allocation and workflow orchestration. As a result, the current results may not generalize whenever it comes to larger scale deployments with multiple devices or more complex workflows. As their is only one runner device the system is limited to executing one workflow at a time, which may be sufficient in some contexts but could become a bottleneck in much larger settings with many different users frequently pushing code and triggering workflows. 
+The current evaluation focuses on using device execution within the CI pipeline. The system was not tested with multiple runner devices executing concurrently, which would require additional work to manage device allocation and workflow orchestration. As a result, the current results may not generalize whenever it comes to larger scale deployments with multiple devices or more complex workflows. As there is only one runner device the system is limited to executing one workflow at a time, which may be sufficient in some contexts but could become a bottleneck in much larger settings with many different users frequently pushing code and triggering workflows. 
 
 ### Future Work
 
