@@ -6,7 +6,7 @@ The GDBuddy system is designed to facilitate automated testing on embedded hardw
 
 ## Hardware-in-the-Loop Architecture
 
-The system follows a hardware-in-the-loop (HIL) architecture in which code compilation occurs in a software based CI environment, while execution occurs on a physical embedded device. In this model, the microcontroller acts as the final authority on program correctness which allows for hardware specific behaviors to be observed during automated testing. This approach allows for real deployment conditions compared to simulators. The separation between the CI orchestration layer and the hardware execution layer also enables repeatable experiments as the device can be reset between runs to ensure a consistent starting state.
+The system follows a Hardware-in-the-Loop (HiL) architecture in which code compilation occurs in a software based CI environment, while execution occurs on a physical embedded device. In this model, the microcontroller acts as the final authority on program correctness which allows for hardware specific behaviors to be observed during automated testing. This approach allows for real deployment conditions compared to simulators. The separation between the CI orchestration layer and the hardware execution layer also enables repeatable experiments as the device can be reset between runs to ensure a consistent starting state.
 
 ### Hardware Components
 
@@ -18,7 +18,7 @@ A host machine running Docker serves as the self hosted GitHub Actions runner an
 
 ### Software Components
 
-The software setup is consists of several key components that work together to enable the hardware-in-the-loop testing workflow. The software stack is built around GitHub Actions which provides the integration framework used to trigger and manage automated workflows. The use of a self-hosted runner is required in order to provide direct access to physical hardware, which is not possible with GitHub-hosted runners. 
+The software setup is consists of several key components that work together to enable the Hardware-in-the-Loop testing workflow. The software stack is built around GitHub Actions which provides the integration framework used to trigger and manage automated workflows. The use of a self-hosted runner is required in order to provide direct access to physical hardware, which is not possible with GitHub-hosted runners. 
 
 Docker is the software used to containerize and build the deployment environment. Docker was selected for this role due to its widespread adoption, extensive documentation, and strong support for GitHub Actions workflows. Its ease of use and documentation has led it to be a common choice for containerized environments across industry and academia. Docker allows for consistent toolchains and dependencies across runs which is why it is used in GDBuddy. 
 
@@ -48,7 +48,7 @@ Along with these security benefits, containerization also provides a huge help i
 
 ![](System_Design3.drawio.jpeg)
 
-The GDBuddy system is built around a hybrid architecture that integrates cloud based automation with locally connected embedded hardware. As shown in the figure above, the system consists of three primary layers: GitHub, a host Linux machine running a self-hosted runner, and the embedded hardware device. This design allows the system to bridge modern continuous integration workflows with real physical hardware, enabling automated hardware-in-the-loop testing.
+The GDBuddy system is built around a hybrid architecture that integrates cloud based automation with locally connected embedded hardware. As shown in the figure above, the system consists of three primary layers: GitHub, a host Linux machine running a self-hosted runner, and the embedded hardware device. This design allows the system to bridge modern continuous integration workflows with real physical hardware, enabling automated Hardware-in-the-Loop testing.
 
 At the top level, GitHub serves as the source control platform and entry point for the workflow. When code is pushed to a repository, a GitHub Actions workflow is triggered automatically. These workflows are defined using YAML configuration files, which specify the sequence of steps required to build, test, and execute code. The use of YAML is important because it allows the workflow to be version controlled alongside the codebase, making the testing process transparent and reproducible. This ensures that every test run follows the exact same procedure, reducing inconsistencies and improving reliability.
 
@@ -110,9 +110,9 @@ While automation increases scalability and consistency it reduces opportunities 
 
 ## Limitations of the Method
 
-While GDBuddy provides a practical and reproducible framework for hardware-in-the-loop testing, several limitations constrain its scalability, generalizability, and operational robustness.
+While GDBuddy provides a practical and reproducible framework for Hardware-in-the-Loop testing, several limitations constrain its scalability, generalizability, and operational robustness.
 
-The system relies on physical embedded hardware, which inherently limits scalability. Unlike purely virtual CI pipelines that can scale using cloud resources, hardware-in-the-loop systems are bounded by the number of available boards, self-hosted runners, and physical USB port availability. Each workflow requires execution and exclusive access to a physical device. Therefore the job capacity is limited to the number of connected boards. As course enrollment increases, additional hardware runner instances must be provided manually. This constraint reflects a fundamental tradeoff between executional realism and scalability.
+The system relies on physical embedded hardware, which inherently limits scalability. Unlike purely virtual CI pipelines that can scale using cloud resources, Hardware-in-the-Loop systems are bounded by the number of available boards, self-hosted runners, and physical USB port availability. Each workflow requires execution and exclusive access to a physical device. Therefore the job capacity is limited to the number of connected boards. As course enrollment increases, additional hardware runner instances must be provided manually. This constraint reflects a fundamental tradeoff between executional realism and scalability.
 
 Physical hardware introduces potential points of failure not present in purely software-based CI systems. This includes USB connection stability, flash memory corruption, and power interruptions. Hardware failure during a CI run may result in workflow interruption or false results. While device reset procedures mitigate some failures, catastrophic hardware faults require manual intervention. As a result, operation reliability depends not only on software correctness but also on hardware stability. 
 
