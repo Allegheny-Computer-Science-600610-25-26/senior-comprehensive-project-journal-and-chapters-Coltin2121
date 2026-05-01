@@ -1,6 +1,6 @@
 # Related work
 
-There are a variety of different sources that are relevant to GDBuddy ranging from peer reviewed academic papers to GitHub repositories. This section is a deeper dive into the workspace surrounding HiL testing, GitHub Actions Runners, Docker, and the Raspberry Pi as all of these things are relevant to the workspace of GDBuddy.
+There are a variety of different sources that are relevant to GDBuddy ranging from peer reviewed academic papers to GitHub repositories. This section is a deeper dive into the workspace surrounding HiL testing, GitHub Actions Runners, Docker, the Raspberry Pi, as well as the Arduino as all of these things are relevant to the workspace of GDBuddy.
 
 ## History of HIL
 
