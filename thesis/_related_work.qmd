@@ -2,7 +2,7 @@
 
 There are a variety of different sources that are relevant to GDBuddy ranging from peer reviewed academic papers to GitHub repositories. This section is a deeper dive into the workspace surrounding HiL testing, GitHub Actions Runners, Docker, the Raspberry Pi, as well as the Arduino as all of these things are relevant to the workspace of GDBuddy.
 
-## History of HIL
+## History of HiL
 
 The history of Hardware-in-the-Loop (HiL) technology is broad, layered, and often difficult to pin down to a single definition. Because HiL sits at the intersection of simulation and physical hardware, its boundaries have shifted over time as both computing power and engineering needs have evolved. Early examples such as flight and vehicle simulators blur the line between simulation and full hardware integration, yet they are still considered HiL because they place a human or subsystem in a test environment that mimics real world conditions, even when significant portions of that environment remain virtual [@brayanov2019hardwareinloop]. Most strict definitions, on the other hand, emphasize systems where real physical components interact with simulated ones in real time, such as an actual turn signal responding to driver input. 
 
