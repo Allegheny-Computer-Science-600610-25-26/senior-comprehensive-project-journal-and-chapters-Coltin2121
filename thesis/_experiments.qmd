@@ -150,7 +150,7 @@ The LED Pattern Verification experiment was conducted across two embedded platfo
 
 Table 1 summarizes the results of all experimental runs across both hardware platforms, including deployment success, execution success, pattern accuracy, and run-to-run consistency.
 
-![Results graphic](results.draw.io.png)
+![Results graphic](Results.drawio.png)
 
 Across all runs, the GDBuddy CI pipeline successfully executed the full workflow consisting of compilation, deployment, and hardware execution. In all recorded cases, the system was able to complete the GitHub Actions workflow and transfer execution control to the embedded devices through the Hardware-in-the-Loop runner. 
 
