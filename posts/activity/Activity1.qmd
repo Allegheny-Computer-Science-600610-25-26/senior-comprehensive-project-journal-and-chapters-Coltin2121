@@ -1,0 +1,10 @@
+---
+title: "Activity 1: GDBuddy?"
+date: "2025-11-07"
+---
+
+This is the first post in a Quarto blog. Welcome!
+
+![](thumbnail.jpg)
+
+My senior comprehensive project is GDBuddy. This was the name of the tool when I began working on it and intend on keeping it. The reason for this name is that it acts as an assistant for GDB which is the GNU Debugger as well as an aid for hardware in the loop testing. 

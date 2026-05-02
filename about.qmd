@@ -1,13 +1,12 @@
 ---
-title: "About"
+title: "Coltin Colucci"
 image: profile.jpg
 about:
   template: jolla
   links:
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/Coltin2121
 ---
 
-About this blog
+Hello, I am Coltin Colucci, I currently am a senior at Allegheny College where I am majoring in Computer Science and minoring in Psychology.

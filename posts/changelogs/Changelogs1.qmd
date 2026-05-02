@@ -1,0 +1,20 @@
+---
+date: "2025-11-07"
+"Thesis Version": 0.0.1
+"Artifact Version": 0.0.1
+---
+
+## Thesis {{< meta "Thesis Version" >}}
+
+I have had a few main versions of my paper release. The first one being 0.0.1. This was the first release fo my paper and it was pretty bare bones. It did not have proper citations. It was als only a few pages long and lacked any visual aids. These are some things that I will definitely be improving on in future versions of my paper.
+
+### Changes
+
+I have now added some visual aids to help to better get across some of the ideas and workflows of this project. I have also no incorporated some of my sources but my in text citation format still needs to be changed. I have also elaborated on quite a few concepts in order to reach the desired length of this paper.  
+
+## Artifact {{< meta "Artifact Version" >}}
+
+Now I have began to write my second chapter or related works section. This is something that I have found to be a bit more difficult because it is a pretty novel tool in the education space so it makes a lot of sources hard to compare. This however makes it easy to show how this tool can fit into the landscape as well so I guess it is not all bad.
+### Changes
+
+I have now added some more resources as well as cleaning up some of the citations. I have found some more sources that may not be directly related to my project however there are certain threads that do connect and I think are important to mention as well as tie into my project.

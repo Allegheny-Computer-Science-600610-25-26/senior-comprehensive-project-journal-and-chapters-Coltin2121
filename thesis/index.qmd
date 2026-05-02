@@ -12,15 +12,15 @@ format:
 natbiboptions: numbers
 # EDIT AT YOUR OWN PERIL #
 
-title: Senior Thesis Title
+title: "GDBuddy: Hardware-in-the-Loop GitHub Actions Runner for Embedded Devices"
 
-firstreader: First Reader
-secondreader: Second Reader
+firstreader: Professor Douglas Luman
+secondreader: Professor Olivar Bonham-Carter
 
 bibliography: references.bib
 
 author:
-  - name: A. Student
+  - name: Coltin Colucci
     affiliation:
       name: Allegheny College
       address: 520 N. Main St., Box Q
@@ -30,82 +30,8 @@ author:
       postal-code: 16335
 
 abstract: |
-  A well-researched student project. Like very.
+  Hardware-in-the-loop (HiL) testing provides a one-to-one representation of real-world embedded system behavior, something simulation alone cannot fully capture, but it is rarely integrated into continuous integration (CI) workflows due to hardware accessibility and automation challenges. This work introduces GDBuddy, a Hardware-in-the-Loop CI framework that enables automated execution of embedded code on physical microcontroller hardware through a self-hosted GitHub Actions runner. GDBuddy bridges cloud-based CI infrastructure with a physical execution layer by deploying compiled firmware to a Raspberry Pi Pico WH or Arduino Uno over a USB interface and capturing runtime output for evaluation. The system is designed to integrate seamlessly with existing GitHub development workflows, allowing embedded systems to be tested using the same mechanisms commonly employed in modern software engineering practices. By leveraging containerization, GDBuddy ensures consistent runtime environments across executions, isolates untrusted code from the host system, and reduces variability caused by differences in local development setups. This approach improves reproducibility while also enabling controlled access to physical hardware resources. Unlike simulation-based approaches, GDBuddy exposes hardware-specific behaviors such as timing variability, peripheral interactions, and device-level constraints that are often not captured in emulated environments. This enables more realistic validation of embedded programs and helps identify issues that would otherwise remain undetected until deployment on physical devices, which is often a manual and inconsistent process in traditional workflows. By automating this process within a CI pipeline, GDBuddy extends standard software engineering practices to embedded systems development, enabling more reliable testing, faster feedback cycles, and improved confidence in system behavior prior to deployment.
 ---
-
-# Template description
-
-This repository contains the starter materials for your thesis in Computer
-Science 600 and 610. The main directory of this repository contains the Markdown
-template for a project designed for use with GitHub Classroom. To learn more about
-the course in which these assignments were completed, please refer to the `README.md` file.
-
-The template specifies various settings in the `_metadata.yml` file included in the
-repository. Change the appropriate values under the `Project-specific values`
-heading. Changing other values outside of that section may cause the project to
-fail to build. **Modify these values at your own risk.**
-
-Author your thesis in the `index.md` document using appropriate Markdown
-hierarchy and syntax; GitHub Actions will automatically create a PDF from the relevant
-files.. Consult the `README` of the proposal repository to learn how to properly build
-and release this PDFs.
-
-## Citations and references
-
-Including references throughout requires a specific pseudo-Markdown tag, demonstrated
-in the following blockquote. (Inspect the `thesis.md` file to see the format.)
-
-> A citation, when included correctly, will appear as it does at the end of this
-> sentence. [@plaat1996research]
-
-## Labeling figures
-
-To label a figure (i.e. an image), referencing the image using correct Markdown
-will automatically caption the figure:
-
-```markdown
-![Label](images/IMAGE_NAME.png)
-```
-
-## Labeling tables
-
-To provide a label for a table, write a short caption for the table and prefix the caption
-with `Table:` as in the example below:
-
-```
-Table: A two-row table demonstrating tables
-
-|Row number | Description |
-|:----------|:------------|
-|1          |Row 1        |
-|2          |Row 2        |
-```
-
-## Other template information
-
-Two things specific to this template to also keep in mind:
-
-1. It is your responsibility to remove this description section before building
-the PDF version you plan to defend.
-2. References _will only appear if cited correctly_ in the text
-
-## Note on `LaTeX` commands
-
-Documents may include specific `LaTeX` commands _in Markdown_. To render these, surround the commands
-with markup denoting `LaTeX`. For example:
-
-```
-Checkmark character:   $\checkmark$
-Superscript character: $^{\dag}$
-```
-
-If using a special package not included in the template, add the desired `LaTeX`
-package or command/macro to the `header-includes` property in [config.yaml](config.yaml).
-
-Should this package not be included in the environment shipped with this template,
-you may also need to add the package to the [GitHub Actions Workflow](.github/workflows/main.yml).
-
-Direct any questions about issues to your first reader.
 
 {{< include _introduction.qmd >}}
 

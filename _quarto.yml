@@ -7,8 +7,8 @@ project:
 execute:
   freeze: auto
 author:
-  - name: A. Student
-    email: astudent@allegheny.edu
+  - name: Coltin Colucci
+    email: Colucci01@allegheny.edu
 website:
   title: "ReadyResearchers Template"
   navbar:

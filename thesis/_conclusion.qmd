@@ -1,15 +1,53 @@
 # Conclusion
 
-Traditionally, this chapter addresses the areas proposed below as sections, although
-not necessarily in this order or organized as offered. However, the last section --
-"Ethical Implcations" is required for this chapter. See the heading below for more
-details.
-
 ## Summary of Results
+
+This project introduced GDBuddy, a Hardware-in-the-Loop testing continuous integration (CI) system designed to enable automated testing of embedded programs on physical hardware. The primary motivation for this work was to address a key limitation in not only research but also in traditional CI systems, which are typically unable to execute and validate programs that depend on embedded devices. As a result, collaborative development of embedded software often relies on manual testing and debugging, which can be time consuming and error prone. GDBuddy was developed to fill this gap by providing a platform that integrates with GitHub Actions, allowing developers to automate the testing of their embedded code on real hardware as part of their CI workflow.
+
+To evaluate the effectiveness of GDBuddy, a hardware focused experiment was conducted using two widely adopted educational platforms, the Raspberry Pi Pico WH and the Arduino Uno. The experiment focused on LED pattern verification as a representative example of deterministic hardware behavior. Programs were executed through a GitHub Actions workflow and deployed to physical devices via the GDBuddy runner. The behavior of each program was observed and evaluated across multiple runs.
+
+The results of this experiment demonstrated that GDBuddy is capable of reliably executing embedded programs in a CI environment. Across all test runs, the system achieved a 100% deployment success rate and a 100% execution success rate on both hardware platforms. Additionally, the observed LED patterns matched the expected behavior in all cases, indicating full pattern accuracy. No inconsistencies were observed across repeated runs, demonstrating that the system produces stable and deterministic results
+
+These findings suggest that GDBuddy successfully bridges the gap between software based CI workflows and hardware dependent embedded systems development. By enabling automated execution on real devices, the system allows embedded programs to be tested in a manner that more closely reflects the systems actual hardware output, setting a standard for development and testing of embedded software in CI environments. This represents a meaningful advancement over traditional approaches that rely solely on simulation or manual validation. 
+
+Beyond the results, the project also demonstrates the feasibility of integrating embedded hardware directly into modern development workflows. The successful use of GitHub Action in conjunction with a Hardware-in-the-Loop runner highlights the potential for extending widely used software engineering tools into the domain of embedded systems. This integration enables a more unified development experience and reduces the friction associated with testing hardware dependent code.
+
+Overall, the results confirm that GDBuddy meets its primary objectives, it provides a reliable, automated, and reproducible system for executing embedded programs on physical hardware within a CI framework. While the scope of the evaluation was limited to relatively simple deterministic programs, the system established a strong foundation for more advanced testing scenarios. 
 
 ## Future Work
 
+While the results of this project are successful, there are several opportunities to extend and improve the GDBuddy system as the experimenting done was rather simplistic in nature and focused on basic functionality. 
+
+One key area for future work is the expansion of supported hardware platforms. As of now, the GDBuddy system has been evaluated using the Arduino Uno and the Raspberry Pi Pico WH, both of which are commonly used hardware interfaces. However, extending support to additional platforms could take this system from being a limited tool for certain devices to a general solution for a wide range of embedded systems. This would involve introducing additional features as well such as wireless communication, multitasking, and real time constraints, which would provide a more encapsulating testing environment. 
+
+Another important direction is the development of automated verification mechanisms. In the current implementation, LED behavior is validated through visual observation. While effective for simple experiments, this approach does not scale well and introduces the possibility of human error. Future versions of GDBuddy could incorporate structured serial output validation, sensor based detection, or even computer vision techniques to automatically verify hardware behavior. This would improve both accuracy and reproducibility.
+
+Scalability is another area that warrants further investigation. The current system is designed to operate with a single hardware device per CI workflow. Future work could explore the use of multiple devices operating in parallel, enabling concurrent testing across different configurations. This would more closely align GDBuddy with traditional CI systems, which are designed to handle large volumes of automated tests. 
+
+Along with this, the system could be extended to support more complex test cases beyond simple LED patterns. For example, future experiments could involve sensor input, communication protocols, or a real time processing task. These scenarios would provide a more comprehensive evaluation of the systems capabilities and better reflect real world embedded applications.
+
+Another potential improvement is enhancing the integration with CI tools such as GitHub Actions. This could include improved logging, more detailed error reporting and better support for debugging failed runs. Providing clear and actionable feedback is particularly important in collaborative development settings, where users rely on CI systems to understand and correct their mistakes.
+
+Finally, this system is only compatible with a Linux host machine. The reason for this limitation is that macOS and Windows do not support the necessary USB functionality required for the GDBuddy runner to communicate with the hardware devices via USB inside of the Docker container. Future work could explore alternative approaches to enable support for these operating systems, such as using virtual machines or cloud based testing environments. This would broaden the accessibility of GDBuddy and allow more developers to benefit from its capabilities.
+
 ## Future Ethical Implications and Recommendations
 
-Especially as pertains to the public release or use of your software or methods, what
-unresolved or special issues remain? What recommendations might you make?
+As the GDBuddy system is being used in production environments, it is important to consider the ethical implications of its use. 
+
+One of the key considerations is the equitable access to hardware resources. Unlike traditional software based CI systems, GDBuddy relies on physical devices, which may not be equally accessible to all developers. An example of this would be in an educational setting where there may be only a limited number of hardware devices available for students to use. This could create disparity in learning opportunities and hinder the development of certain individuals. To address this, it is recommended that institutions and organizations using GDBuddy ensure that hardware resources are allocated fairly and that alternative arrangements are made for those who may not have access to physical devices. However it is important to note that the GDBuddy system could also be seen as a solution to this same problem as that whole class or group of developers could share a single device for testing purposes, which could help to mitigate some of the access issues.
+
+Another ethical consideration involves system transparency and reliability. Developers using GDBuddy may rely on the system's output to evaluate the correctness of their programs. If the system produces incorrect results due to hardware faults, misconfiguration. or communication errors, developers may be misled about the quality of their work. It is therefore important that the system provides clear feedback, error reporting, as well as mechanisms for verifying results given by the system. This would help to ensure that developers can trust the output and make informed decisions based on it.
+
+There are also considerations related to academic integrity. Automated CI systems can both support and complicate issues of plagiarism and unauthorized collaboration. While GDBuddy itself does not introduce new forms of misconduct, its integration into coursework may require instructors to think carefully about how assignments are structured and evaluated. For example, assignments could be designed to emphasize unique problem solving approaches or incorporate randomized inputs to reduce the likelihood of copying. 
+
+The integration of hardware into automated systems raises questions about resource usage and sustainability. Running CI Workflows on physical devices consumes power and may contribute to hardware wear over time. While these impacts are relatively small at the scale of this project, they could become more significant in larger deployments. Developers and institutions should consider strategies for minimizing unnecessary executions and optimizing resource usage. 
+
+Security is another important ethical concern. A system that automatically deploys and executes code on physical hardware introduces potential risks if malicious or poorly written code is submitted. For example, code could attempt to damage hardware, interfere with other processes, or exploit vulnerabilities in the host system. To mitigate these risks, future versions of GDBuddy should include input validation and execution limits. 
+
+Last, there is an ethical responsibility to ensure that tools like GDBuddy are used to enhance learning and development rather than replace it. While automation can provide significant benefits, it should not be seen as a substitute for critical thinking and hands-on experience. Educators and developers should strive to use GDBuddy in a way that complements traditional learning methods and encourages deeper understanding of embedded systems concepts. There is still an importance of local testing and debugging skills that should be emphasized first as opposed to relying on the automated system as the primary means of validation.
+
+## Final Remarks
+
+This project demonstrates that it is both feasible and valuable to extend continuous integration workflows to embedded systems through Hardware-in-the-Loop testing. GDBuddy provides a practical implementation of this idea, enabling automated, reliable, and repeatable execution of embedded programs on real hardware. 
+
+While there are limitations and areas for improvement, the system establishes a strong foundation for future work and highlights the potential for bridging the gap between software engineering practices and embedded systems development. With further refinement and expansion, tools like GDBuddy could play a significant role in modernizing how embedded systems are developed, tested, and deployed, ultimately leading to higher quality software and more efficient development processes.
