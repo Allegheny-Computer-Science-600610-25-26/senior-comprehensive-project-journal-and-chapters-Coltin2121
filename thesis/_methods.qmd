@@ -32,6 +32,8 @@ Hardware deployment is managed using OpenOCD, which provides a standardized inte
 
 An entrypoint script orchestrates the execution flow within the container by coordinating build, deployment, and execution steps. This script acts as the control layer between GitHub Actions and the containerized environment, ensuring that firmware compilation, device flashing, program execution, and output collection occur in a defined order. Centralizing this logic in the entrypoint script simplifies workflow configuration and improves maintainability of the overall system. 
 
+![GDBuddy system architecture showing three layers: GitHub cloud platform, Linux host with Docker container, and embedded hardware device connected via USB](System_Design3.drawio.jpeg){#fig-gdbuddy-architecture width=90% fig-align="center"}
+
 ## Continuous Integration Workflow
 
 The continuous integration workflow serves as the orchestration layer that coordinates compilation, deployment, execution and evaluation across the system. The workflow execution is triggered automatically whenever code is pushed to the repository. 
@@ -48,7 +50,9 @@ Along with these security benefits, containerization also provides a huge help i
 
 ## System Architecture
 
-![GDBuddy system architecture showing three layers: GitHub cloud platform, Linux host with Docker container, and embedded hardware device connected via USB](System_Design3.drawio.jpeg){#fig-gdbuddy-architecture}
+::: center
+![GDBuddy system architecture showing three layers: GitHub cloud platform, Linux host with Docker container, and embedded hardware device connected via USB](System_Design3.drawio.jpeg)
+:::
 
 The GDBuddy system is built around a hybrid architecture that integrates cloud based automation with locally connected embedded hardware. As shown in the figure above, the system consists of three primary layers: GitHub, a host Linux machine running a self-hosted runner, and the embedded hardware device. This design allows the system to bridge modern continuous integration workflows with real physical hardware, enabling automated Hardware-in-the-Loop testing.
 

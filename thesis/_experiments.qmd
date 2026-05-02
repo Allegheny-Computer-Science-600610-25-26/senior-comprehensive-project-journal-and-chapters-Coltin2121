@@ -20,7 +20,7 @@ Ultimately this experiment evaluates both the functional correctness of code exe
 
 ### Experimental Workflow
 
-![GDBuddy workflow diagram illustrating the execution pipeline from code push through GitHub Actions to hardware execution and feedback.](Workflow.png){#fig-workflow-diagram width=90% fig-align="center"}
+![GDBuddy workflow diagram illustrating the execution pipeline from code push through GitHub Actions to hardware execution and feedback.](Workflow.png)
 
 This figure illustrates the overall workflow of the GDBuddy system. The process begins when a developer or student pushes code to a GitHub repository connected to an active runner device. This triggers a GitHub Actions workflow. This workflow is configured to t utilize the GDBuddy runner, which is hosted on a Raspberry Pi Pico WH or an Arduino Uno. The runner is responsible for orchestrating the compilation, deployment, and execution of the submitted program on the target hardware. 
 
