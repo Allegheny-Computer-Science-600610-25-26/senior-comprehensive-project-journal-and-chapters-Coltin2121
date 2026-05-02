@@ -54,9 +54,10 @@ GDBuddy addresses this gap in the education sector by providing HiL testing for 
 This example supports the motivation behind GDBuddy. While software can be tested in simulation for functional correctness only HiL can ensure that correctness in reality. GDBuddy creates a system that makes this technology easy to access by making HiL testing continuous, reproducible, and automated.
 
 ### Workflow
-![GDBuddy workflow diagram showing the integration of GitHub, Docker container, and physical hardware execution](workflow_graphic.jpg){#fig-gbuddy-workflow}
 
 The figure shown above represents the workflow of GDBuddy. Something that is very noticeable is that if GitHub is already being used for assignments then students do not have to change anything they are doing at all. They simply clone the repository, complete the assignment, and then push the repository to GitHub. As long as a runner is active it will automatically pick up this assignment as a job. Activating the runner is a somewhat simple process. Simply connect your Device (Arduino or Pi) to your host machine, open the GDBuddy folder, enter your GitHub Personal Access Token(PAT) as well as your organization, and docker compose up. Once you do this it should only take a few minutes to authenticate and then it becomes an active runner that is waiting for jobs. Now that the runner is activated and a repository has been pushed this will automatically be picked up by the runner where it will then run the code on a physical device, evaluate it, then return the feedback to the developer. This is the base workflow of GDBuddy. 
+
+![GDBuddy workflow diagram showing the integration of GitHub, Docker container, and physical hardware execution](workflow_graphic.jpg){#fig-gbuddy-workflow} 
 
 ### Automating Embedded Testing
 
