@@ -16,7 +16,7 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two.
 
-![Comparison of Simulation, Emulation, and Hardware-in-the-Loop testing approaches](SimVsEmVsHIL.jpeg){#fig-sim-em-hil width=130%}
+![Comparison of Simulation, Emulation, and Hardware-in-the-Loop testing approaches](SimVsEmVsHIL.jpeg){#fig-sim-em-hil width=110%}
 
 This venn diagram goes to show the pros and cons of all of these different methods. Each has their own use in the testing process however some are more fit for certain roles than others. For example if testing for a car part that is essential to the braking system one would likely want to simulate and emulate this before trying to test it with HiL as it could be a safety concern.
 
