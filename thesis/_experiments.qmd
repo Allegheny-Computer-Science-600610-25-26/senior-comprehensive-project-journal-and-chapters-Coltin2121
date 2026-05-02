@@ -199,20 +199,12 @@ Several factors may influence the validity of the experimental results presented
 
 ### Internal Validity
 
-Internal validity refers to whether the results are a product of the GDBuddy system rather than other factors that may have been influenced by experimental design or other accounted for factors. 
-
-One limitation of this experiment is that LED pattern correctness was verified through visual observation While the blinking patterns were designed to be simple and easily recognizable, manual observation introduces the possibility of human error in pattern recognition. 
-
-Additionally, hardware timing behavior may vary slightly due to microcontroller clock differences or other inconsistencies in execution timing. Although no inconsistencies were observed during testing, these factors could influence results in less controlled environments. 
+Internal validity refers to whether the results are a product of the GDBuddy system rather than other factors that may have been influenced by experimental design or other accounted for factors. One limitation of this experiment is that LED pattern correctness was verified through visual observation While the blinking patterns were designed to be simple and easily recognizable, manual observation introduces the possibility of human error in pattern recognition. Additionally, hardware timing behavior may vary slightly due to microcontroller clock differences or other inconsistencies in execution timing. Although no inconsistencies were observed during testing, these factors could influence results in less controlled environments. 
 
 
 ### External Validity
 
-This refers to the degree in which these results can be generalized beyond the experimental setup.
-
-This experiment was conducted using the two specific hardware platforms that GDBuddy is compatible with. While these platforms are widely used in a variety of settings, the results would not generalize to other embedded devices or microcontrollers. 
-
-Additionally, all experiments were conducted in a controlled environment with consistent hardware and stable connections. In other settings there may be additional variability in hardware such as wiring configuration, device quality, user behavior, or USB communication stability that could impact results. 
+This refers to the degree in which these results can be generalized beyond the experimental setup. This experiment was conducted using the two specific hardware platforms that GDBuddy is compatible with. While these platforms are widely used in a variety of settings, the results would not generalize to other embedded devices or microcontrollers. Additionally, all experiments were conducted in a controlled environment with consistent hardware and stable connections. In other settings there may be additional variability in hardware such as wiring configuration, device quality, user behavior, or USB communication stability that could impact results. 
 
 ### Construct Validity
 
