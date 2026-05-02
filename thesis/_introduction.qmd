@@ -16,7 +16,7 @@ It is also important to note the benefits of a hardware in the loop system. In h
 
 Emulation provides a more accurate approximation by modeling the hardware on a lower level. It does this by trying to model the same architecture, instruction set, and peripheral behavior of a device closely enough that unmodified firmware can run as if it were executing on the real hardware. Emulators mimic both the hardware and software of a real device whereas simulators replicate the behavior and environment of a device without imitating its hardware. This shows the clear difference between these two.
 
-![Comparison of Simulation, Emulation, and Hardware-in-the-Loop testing approaches](SimVsEmVsHIL.jpeg){#fig-sim-em-hil width=110%}
+![Comparison of Simulation, Emulation, and Hardware-in-the-Loop testing approaches.](SimVsEmVsHIL.jpeg){#fig-sim-em-hil width=90% fig-align="center"}
 
 This venn diagram goes to show the pros and cons of all of these different methods. Each has their own use in the testing process however some are more fit for certain roles than others. For example if testing for a car part that is essential to the braking system one would likely want to simulate and emulate this before trying to test it with HiL as it could be a safety concern.
 
@@ -41,7 +41,8 @@ Even the best emulators can not perfectly replicate real hardware. This is why H
 For this project HiL is one of the key components because of these reasons. With HiL testing through a GitHub Actions runner on a real Raspberry Pi it allows for an accurate and reproducible environment to produce test results on. Combining HiL with GitHub actions allows for accessible, automated, and scalable integration in education.
 
 ### Industry Context
-![Testing workflow showing the progression from Software-in-the-Loop through Hardware-in-the-Loop to Vehicle-in-the-Loop testing](HILvsSIL.jpg){#fig-hil-vs-sil}
+
+![Testing workflow showing the progression from Software-in-the-Loop through Hardware-in-the-Loop to Vehicle-in-the-Loop testing.](HILvsSIL.jpg){#fig-hil-vs-sil width=85% fig-align="center"}
 
 As shown in Figure 1 of Balan et al. (2025), this is what a testing process might look like for a company that is selling a product to the open market. In this figure the design specification is on the left and the test execution is shown on the right. SiL stands for Software in the Loop. This involves testing software components in a simulated environment where software is executed on a virtual platform instead of physical hardware. This is often industry standard for the first round of testing as if the software can not run successfully on its own it probably does not work when integrated with a separate piece of hardware. The next level of testing is HiL. This is when the hardware component actually has the software running on it in real time. Where this setup differs from GDBuddy is when we start talking about ViL (Vehicle in the Loop). This is often done in the automotive industry but also translates to any project where multiple different parts are working together. Now that the specific part has been tested via HiL it is important to then test it with ViL to show that it can work with the surrounding systems and not just on its own. Ultimately if all of these tests pass then you can begin vehicle testing as a whole and feel confident that the various parts and systems that have been tested will work. 
 
@@ -57,7 +58,7 @@ This example supports the motivation behind GDBuddy. While software can be teste
 
 The figure shown above represents the workflow of GDBuddy. Something that is very noticeable is that if GitHub is already being used for assignments then students do not have to change anything they are doing at all. They simply clone the repository, complete the assignment, and then push the repository to GitHub. As long as a runner is active it will automatically pick up this assignment as a job. Activating the runner is a somewhat simple process. Simply connect your Device (Arduino or Pi) to your host machine, open the GDBuddy folder, enter your GitHub Personal Access Token(PAT) as well as your organization, and docker compose up. Once you do this it should only take a few minutes to authenticate and then it becomes an active runner that is waiting for jobs. Now that the runner is activated and a repository has been pushed this will automatically be picked up by the runner where it will then run the code on a physical device, evaluate it, then return the feedback to the developer. This is the base workflow of GDBuddy. 
 
-![GDBuddy workflow diagram showing the integration of GitHub, Docker container, and physical hardware execution](workflow_graphic.jpg){#fig-gbuddy-workflow} 
+![GDBuddy workflow diagram showing the integration of GitHub, Docker container, and physical hardware execution.](workflow_graphic.jpg){#fig-gbuddy-workflow width=90% fig-align="center"}
 
 ### Automating Embedded Testing
 
