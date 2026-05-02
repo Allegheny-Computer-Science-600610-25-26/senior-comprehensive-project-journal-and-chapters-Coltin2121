@@ -40,7 +40,7 @@ Although industrial HiL systems remain prohibitively expensive, the educational 
 
 The affordability of this setup meaningfully changes who can access HiL. Instead of being restricted to aerospace, defense, or automotive industries with multimillion dollar budgets, GDBuddy enables students, educators, and smaller institutions to run real HiL tests as part of everyday coursework. This ease of access in HiL tools is extremely valuable for its cost and mirrors the larger trends in computing. By reducing the barriers of cost and specialized equipment, the GDBuddy model provides a pathway for educational environments to benefit from the same development principles historically reserved for organizations like NASA or major automotive manufactures. [@mihalic2022hardwareinloop; @elvitigala2021lowcost]
 
-## HIL fundamentals
+## HiL fundamentals
 
 Hardware-in-the-Loop (HiL) is a testing methodology where real hardware is integrated into a system to enable testing a verification that the software can run on the real system as opposed to simulating that system. 
 
